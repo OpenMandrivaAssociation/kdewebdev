@@ -85,39 +85,37 @@ A html editor for the K Desktop Environment.
 %_bindir/xsldbg
 
 %_bindir/kimagemapeditor
-%_bindir/klinkstatus
+#%_bindir/klinkstatus
 %dir %_datadir/apps/quanta
 %_datadir/apps/quanta/*
 %dir %_datadir/apps/kimagemapeditor/
 %_datadir/apps/kimagemapeditor/*
 %_iconsdir/*/*/*/kimagemap*
-%_datadir/services/kimagemapeditorpart.desktop
+%_datadir/kde4/services/kimagemapeditorpart.desktop
 %_libdir/kde4/libkimagemapeditor.*
-%_datadir/applications/kde/kimagemapeditor.desktop
-%_datadir/applications/kde/klinkstatus.desktop
-%_datadir/applications/kde/kxsldbg.desktop
-%_datadir/applications/kde/quanta.desktop
-%_datadir/services/klinkstatus_part.desktop
-%dir %_datadir/apps/klinkstatus
-%_datadir/apps/klinkstatus/*
-%dir %_datadir/apps/klinkstatuspart/
-%_datadir/apps/klinkstatuspart/*.rc
-%dir %_datadir/apps/klinkstatuspart/pics/
-%_datadir/apps/klinkstatuspart/pics/*.png
-%_libdir/kde4/libklinkstatuspart.*
+%_datadir/applications/kde4/kimagemapeditor.desktop
+#%_datadir/applications/kde4/klinkstatus.desktop
+%_datadir/applications/kde4/kxsldbg.desktop
+%_datadir/applications/kde4/quanta.desktop
+#%_datadir/kde4/services/klinkstatus_part.desktop
+#%dir %_datadir/apps/klinkstatus
+#%_datadir/apps/klinkstatus/*
+#%dir %_datadir/apps/klinkstatuspart/
+#%_datadir/apps/klinkstatuspart/*.rc
+#%dir %_datadir/apps/klinkstatuspart/pics/
+#%_datadir/apps/klinkstatuspart/pics/*.png
+#%_libdir/kde4/libklinkstatuspart.*
 %_libdir/kde4/libkdevcreatequantaproject.so
 %_libdir/kde4/libkdevhtmlpreview.so
-%_libdir/kde4/libkdevprojecttree.so
 %_libdir/kde4/libkdevquantacore.so
 %_libdir/kde4/libkdevquantafilestree.so
-%_libdir/kde4/libkdevquantaproject.so
 %_libdir/kde4/libkdevstructuretree.so
 %_libdir/kde4/libkdevtagdialogs.so
 %_libdir/kde4/libkdevtemplatestree.so
 %_libdir/kde4/libkdevusertoolbars.so
 
 
-%_iconsdir/*/*/*/klinkstat*
+#%_iconsdir/*/*/*/klinkstat*
 %_iconsdir/*/*/actions/*
 %_iconsdir/*/*/*/quanta*
 %dir %_datadir/apps/kxsldbg/
@@ -125,7 +123,7 @@ A html editor for the K Desktop Environment.
 %dir %_datadir/apps/kxsldbgpart/
 %_datadir/apps/kxsldbgpart/*
 %_libdir/kde4/libkxsldbgpart.*
-%_datadir/services/kxsldbg_part.desktop
+%_datadir/kde4/services/kxsldbg_part.desktop
 
 %_datadir/apps/kdevusertoolbars/pics/*.png
 %_datadir/apps/xsldbg/*.xml
@@ -135,18 +133,15 @@ A html editor for the K Desktop Environment.
 %_datadir/apps/xsldbg/testdoc.xsl
 %_datadir/apps/xsldbg/xsldbghelp.xsl
 %_datadir/config.kcfg/quanta.kcfg
-%_datadir/mimelnk/application/x-quanta.desktop
-%_datadir/services/kdevcreatequantaproject.desktop
-%_datadir/services/kdevhtmlpreview.desktop
-%_datadir/services/kdevprojecttree.desktop
-%_datadir/services/kdevquantacore.desktop
-%_datadir/services/kdevquantafilestree.desktop
-%_datadir/services/kdevquantaproject.desktop
-%_datadir/services/kdevstructuretree.desktop
-%_datadir/services/kdevtagdialogs.desktop
-%_datadir/services/kdevtemplatestree.desktop
-%_datadir/services/kdevusertoolbars.desktop
-%_datadir/servicetypes/kdevelopquanta.desktop
+%_datadir/kde4/services/kdevcreatequantaproject.desktop
+%_datadir/kde4/services/kdevhtmlpreview.desktop
+%_datadir/kde4/services/kdevquantacore.desktop
+%_datadir/kde4/services/kdevquantafilestree.desktop
+%_datadir/kde4/services/kdevstructuretree.desktop
+%_datadir/kde4/services/kdevtagdialogs.desktop
+%_datadir/kde4/services/kdevtemplatestree.desktop
+%_datadir/kde4/services/kdevusertoolbars.desktop
+%_datadir/kde4/servicetypes/kdevelopquanta.desktop
 
 %_datadir/apps/kdevcreatequantaproject/kdevcreatequantaproject.rc
 %_datadir/apps/kdevcreatequantaproject/pics/*.png
@@ -154,15 +149,35 @@ A html editor for the K Desktop Environment.
 %_datadir/apps/kdevelop/profiles/IDE/quanta/profile.config
 %_datadir/apps/kdevelop/profiles/IDE/quanta/quanta.appwizard
 %_datadir/apps/kdevhtmlpreview/kdevhtmlpreview.rc
-%_datadir/apps/kdevprojecttree/kdevprojecttree.rc
 %_datadir/apps/kdevquantacore/kdevquantacore.rc
 %_datadir/apps/kdevquantafilestree/kdevquantafilestree.rc
-%_datadir/apps/kdevquantaproject/kdevquantaproject.rc
 %_datadir/apps/kdevstructuretree/kdevstructuretree.rc
 %_datadir/apps/kdevtagdialogs/kdevtagdialogs.rc
 %_datadir/apps/kdevtemplatestree/kdevtemplatestree.rc
 %_datadir/apps/kdevusertoolbars/global
 %_datadir/apps/kdevusertoolbars/kdevusertoolbars.rc
+
+%dir %_docdir/HTML/en/quanta/
+%doc %_docdir/HTML/en/quanta/*.png
+%doc %_docdir/HTML/en/quanta/*.bz2
+%doc %_docdir/HTML/en/quanta/*.docbook
+
+%dir %_docdir/HTML/en/klinkstatus/
+%doc %_docdir/HTML/en/klinkstatus/*.bz2
+%doc %_docdir/HTML/en/klinkstatus/*.docbook
+%doc %_docdir/HTML/en/klinkstatus/screenshot.png
+
+%dir %_docdir/HTML/en/kxsldbg/
+%doc %_docdir/HTML/en/kxsldbg/*.png
+%doc %_docdir/HTML/en/kxsldbg/*.bz2
+%doc %_docdir/HTML/en/kxsldbg/*.docbook
+
+
+%dir %_docdir/HTML/en/xsldbg/
+%doc %_docdir/HTML/en/xsldbg/*.bz2
+%doc %_docdir/HTML/en/xsldbg/*.docbook
+
+%_datadir/apps/kdevappwizard/templates/quanta.tar.bz2
 
 #--------------------------------------------------------------------------
 
@@ -191,10 +206,15 @@ Kfilereplace program
 %_datadir/apps/kfilereplacepart/*
 %dir %_datadir/apps/kfilereplace/
 %_datadir/apps/kfilereplace/*
-%_datadir/services/kfilereplacepart.desktop
-%_datadir/applications/kde/kfilereplace.desktop
+%_datadir/kde4/services/kfilereplacepart.desktop
+%_datadir/applications/kde4/kfilereplace.desktop
 %_libdir/kde4/libkfilereplacepart.*
 %_iconsdir/*/*/*/kfilerep*
+
+%dir %_docdir/HTML/en/kfilereplace/
+%doc %_docdir/HTML/en/kfilereplace/*.png
+%doc %_docdir/HTML/en/kfilereplace/*.bz2
+%doc %_docdir/HTML/en/kfilereplace/*.docbook
 
 #--------------------------------------------------------------------------
 
@@ -327,6 +347,5 @@ make DESTDIR=%buildroot install
 
 %clean
 rm -rf $RPM_BUILD_ROOT
-
 
 
