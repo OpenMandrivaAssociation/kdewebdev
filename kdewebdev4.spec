@@ -35,7 +35,7 @@
 
 
 Name:		kdewebdev4
-Version: 	3.80.2
+Version: 	3.80.3
 Release:    	%mkrel 0.%branch_date.2
 License:	GPL
 Packager:       Mandriva Linux KDE Team <kde@mandriva.com>
