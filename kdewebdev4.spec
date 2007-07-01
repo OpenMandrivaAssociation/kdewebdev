@@ -132,29 +132,29 @@ A html editor for the K Desktop Environment.
 %doc %_kde_docdir/HTML/en/quanta/index.cache.bz2
 
 #--------------------------------------------------------------------------
-
-%package        kde4-quanta-doc
-Summary:        Documentation about Quanta
-Group:          Books/Computer books
-
-Provides:       quanta4-doc
-%description    kde4-quanta-doc
-
-Documentation for Quanta
-
-%files kde4-quanta-doc
-%dir %_kde_docdir/quanta
-%dir %_kde_docdir/quanta/css
-%doc %_kde_docdir/quanta/css/*
-%dir %_kde_docdir/quanta/html
-%doc %_kde_docdir/quanta/html/*
-%dir %_kde_docdir/quanta/javascript
-%doc %_kde_docdir/quanta/javascript/*
-%dir %_kde_docdir/quanta/mysql5
-%doc %_kde_docdir/quanta/mysql5/*
-%dir %_kde_docdir/quanta/php
-%doc %_kde_docdir/quanta/php/*
-
+#
+#%package        kde4-quanta-doc
+#Summary:        Documentation about Quanta
+#Group:          Books/Computer books
+#
+#Provides:       quanta4-doc
+#%description    kde4-quanta-doc
+#
+#Documentation for Quanta
+#
+#%files kde4-quanta-doc
+#%dir %_kde_docdir/quanta
+#%dir %_kde_docdir/quanta/css
+#%doc %_kde_docdir/quanta/css/*
+#%dir %_kde_docdir/quanta/html
+#%doc %_kde_docdir/quanta/html/*
+#%dir %_kde_docdir/quanta/javascript
+#%doc %_kde_docdir/quanta/javascript/*
+#%dir %_kde_docdir/quanta/mysql5
+#%doc %_kde_docdir/quanta/mysql5/*
+#%dir %_kde_docdir/quanta/php
+#%doc %_kde_docdir/quanta/php/*
+#
 #--------------------------------------------------------------------------
 
 %package -n kde4-klinkstatus
@@ -224,9 +224,9 @@ Kfilereplace program
 %doc %_kde_docdir/HTML/en/kfilereplace/*.png
 %doc %_kde_docdir/HTML/en/kfilereplace/index.cache.bz2
 %doc %_kde_docdir/HTML/en/kfilereplace/index.docbook
-%_kde_datadir/icons/hicolor/*/apps/kfilereplace.png
+%_kde_iconsdir/hicolor/*/apps/kfilereplace.png
 %_kde_datadir/kde4/services/kfilereplacepart.desktop
-%_datadir/dbus-1/interfaces/org.kde.kfilereplace.xml
+%_kde_datadir/dbus-1/interfaces/org.kde.kfilereplace.xml
 %_kde_libdir/kde4/libkfilereplacepart.so
 
 #--------------------------------------------------------------------------
@@ -339,19 +339,23 @@ kxsldbg program
 %doc %_kde_docdir/HTML/en/xsldbg/*.docbook
 %_kde_datadir/icons/hicolor/*/actions/xsldbg_*
 %_kde_datadir/kde4/services/kxsldbg_part.desktop
-%_datadir/dbus-1/interfaces/org.kde.kxsldbg.kxsldbg.xml
+%_kde_datadir/dbus-1/interfaces/org.kde.kxsldbg.kxsldbg.xml
 %_kde_libdir/kde4/libkxsldbgpart.so
 
 #--------------------------------------------------------------------------
 
 %prep
-%setup -q -n kdewebdev -a 1 -a 2 -a 3 -a 4 -a 5
+%setup -q -n kdewebdev 
+#TODO Readd
+#-a 1 -a 2 -a 3 -a 4 -a 5
 %patch0 -p0
 
 %build
 cd $RPM_BUILD_DIR/kdewebdev
 
 %cmake_kde4 \
+      -DDBUS_SERVICES_DIR=%_kde_datadir/dbus-1/services \
+      -DDBUS_INTERFACES_DIR=%_kde_datadir/dbus-1/interfaces \
 %if %use_enable_final
       -DKDE4_ENABLE_FINAL=ON \
 %endif
@@ -372,12 +376,13 @@ cd build
 
 make DESTDIR=%buildroot install
 
-%__mkdir -p %buildroot%_kde_datadir/doc/quanta
-cp -r css/ %buildroot%_kde_datadir/doc/quanta
-cp -r html/ %buildroot%_kde_datadir/doc/quanta
-cp -r javascript/ %buildroot%_kde_datadir/doc/quanta
-cp -r mysql5/ %buildroot%_kde_datadir/doc/quanta
-cp -r php/ %buildroot%_kde_datadir/doc/quanta
+# TODO Readd
+#%__mkdir -p %buildroot%_kde_datadir/doc/quanta
+#cp -r css/ %buildroot%_kde_datadir/doc/quanta
+#cp -r html/ %buildroot%_kde_datadir/doc/quanta
+#cp -r javascript/ %buildroot%_kde_datadir/doc/quanta
+#cp -r mysql5/ %buildroot%_kde_datadir/doc/quanta
+#cp -r php/ %buildroot%_kde_datadir/doc/quanta
 
 
 %clean
