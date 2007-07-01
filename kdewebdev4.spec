@@ -1,14 +1,4 @@
-# remove it when kde4 will be official kde package
-%define _prefix /opt/kde4/
-%define _libdir %_prefix/%_lib
-%define _datadir %_prefix/share/
-%define _bindir %_prefix/bin
-%define _includedir %_prefix/include/
-%define _iconsdir %_datadir/icons/
-%define _sysconfdir %_prefix/etc/
-%define _docdir %_datadir/doc/
-
-%define branch_date 20070418
+%define revision 682032
 
 %define use_enable_final 0
 %{?_no_enable_final: %{expand: %%global use_enable_final 0}}
@@ -35,277 +25,333 @@
 
 
 Name:		kdewebdev4
-Version: 	3.80.3
-Release:    	%mkrel 0.%branch_date.2
+Version: 	3.91
+Release:    	%mkrel 0.%revision.1
 License:	GPL
-Packager:       Mandriva Linux KDE Team <kde@mandriva.com>
 Summary:	A web editor for the KDE Desktop Environment
 Epoch:		1
-URL:		ftp://ftp.kde.org/pub/kde/stable/%version/src/
+URL:		http://kdewebdev.org/
 %if %branch
-Source: ftp://ftp.kde.org/pub/kde/stable/%version/src/kdewebdev-%version-%branch_date.tar.bz2
+Source: ftp://ftp.kde.org/pub/kde/stable/%version/src/kdewebdev-%version.%revision.tar.bz2
 %else
 Source: ftp://ftp.kde.org/pub/kde/stable/%version/src/kdewebdev-%version.tar.bz2
 %endif
+Source1:        css.tar.bz2
+Source2:        html.tar.bz2
+Source3:        javascript.tar.bz2
+Source4:        mysql5-quanta-doc-20051117.tar.bz2
+Source5:        php.tar.bz2
+Patch0:		kdewebdev-fix-cmake.patch
 Group:		Graphical desktop/KDE
 BuildRoot:	%_tmppath/%name-%version-%release-root
 BuildRequires:  pam
 BuildRequires:  diffutils
-BuildRequires: jpeg-devel
-BuildRequires:	png-devel
 BuildRequires:	libxml2-devel
 BuildRequires:	libxslt-devel
-%define mini_release %mkrel 0.%branch_date.1
-BuildRequires: kdelibs4-devel >= %version-%mini_release
+BuildRequires: kdelibs4-devel
 BuildRequires:	freetype2 
-BuildRequires:	kdevelop4-devel
+#BuildRequires:	kdevelop4-devel
 Requires:		tidy
 Requires(post): desktop-file-utils
 Requires(postun): desktop-file-utils
 
-%description
-A html editor for the K Desktop Environment.
+Requires: kde4-quanta
+Requires: kde4-kimagemapeditor
+Requires: kde4-klinkstatus
+Requires: kde4-kfilereplace
+Requires: kde4-kommander
 
-%post
-/sbin/ldconfig
-%{update_desktop_database}
-%update_icon_cache crystalsvg
+%description
+
+A web editor for the KDE Desktop Environment
+
+#--------------------------------------------------------------------
+
+%package -n     %name-core
+Summary:        Common files needed by %name
+Group:          Graphical desktop/KDE
+Provides:       quanta4
+%description -n %name-core
+
+Common files needed by %name
+
+%post -n %name-core
 %update_icon_cache hicolor
 
-%postun
-/sbin/ldconfig
-%{clean_desktop_database}
-%clean_icon_cache crystalsvg
+%postun -n %name-core
 %clean_icon_cache hicolor
 
-%files
+%files -n %name-core
 %defattr(-,root,root)
-%_bindir/quanta
-%_bindir/kxsldbg
-%_bindir/xsldbg
+%_kde_iconsdir/hicolor/16x16/actions/1downarrow.png
+%_kde_iconsdir/hicolor/16x16/actions/configure.png
+%_kde_iconsdir/hicolor/16x16/actions/exit.png
+%_kde_iconsdir/hicolor/16x16/actions/hash.png
+%_kde_iconsdir/hicolor/16x16/actions/mark.png
+%_kde_iconsdir/hicolor/16x16/actions/next.png
+%_kde_iconsdir/hicolor/16x16/actions/run.png
+%_kde_iconsdir/hicolor/16x16/actions/step.png
+%_kde_iconsdir/hicolor/22x22/actions/1downarrow.png
+%_kde_iconsdir/hicolor/22x22/actions/addpoint.png
+%_kde_iconsdir/hicolor/22x22/actions/arrow.png
+%_kde_iconsdir/hicolor/22x22/actions/circle.png
+%_kde_iconsdir/hicolor/22x22/actions/circle2.png
+%_kde_iconsdir/hicolor/22x22/actions/configure.png
+%_kde_iconsdir/hicolor/22x22/actions/exit.png
+%_kde_iconsdir/hicolor/22x22/actions/freehand.png
+%_kde_iconsdir/hicolor/22x22/actions/lower.png
+%_kde_iconsdir/hicolor/22x22/actions/next.png
+%_kde_iconsdir/hicolor/22x22/actions/polygon.png
+%_kde_iconsdir/hicolor/22x22/actions/raise.png
+%_kde_iconsdir/hicolor/22x22/actions/rectangle.png
+%_kde_iconsdir/hicolor/22x22/actions/removepoint.png
+%_kde_iconsdir/hicolor/22x22/actions/run.png
+%_kde_iconsdir/hicolor/22x22/actions/step.png
 
-%_bindir/kimagemapeditor
-#%_bindir/klinkstatus
-%dir %_datadir/apps/quanta
-%_datadir/apps/quanta/*
-%dir %_datadir/apps/kimagemapeditor/
-%_datadir/apps/kimagemapeditor/*
-%_iconsdir/*/*/*/kimagemap*
-%_datadir/kde4/services/kimagemapeditorpart.desktop
-%_libdir/kde4/libkimagemapeditor.*
-%_datadir/applications/kde4/kimagemapeditor.desktop
-#%_datadir/applications/kde4/klinkstatus.desktop
-%_datadir/applications/kde4/kxsldbg.desktop
-%_datadir/applications/kde4/quanta.desktop
-#%_datadir/kde4/services/klinkstatus_part.desktop
-#%dir %_datadir/apps/klinkstatus
-#%_datadir/apps/klinkstatus/*
-#%dir %_datadir/apps/klinkstatuspart/
-#%_datadir/apps/klinkstatuspart/*.rc
-#%dir %_datadir/apps/klinkstatuspart/pics/
-#%_datadir/apps/klinkstatuspart/pics/*.png
-#%_libdir/kde4/libklinkstatuspart.*
-%_libdir/kde4/libkdevcreatequantaproject.so
-%_libdir/kde4/libkdevhtmlpreview.so
-%_libdir/kde4/libkdevquantacore.so
-%_libdir/kde4/libkdevquantafilestree.so
-%_libdir/kde4/libkdevstructuretree.so
-%_libdir/kde4/libkdevtagdialogs.so
-%_libdir/kde4/libkdevtemplatestree.so
-%_libdir/kde4/libkdevusertoolbars.so
+#--------------------------------------------------------------------
 
+%package -n kde4-quanta
+Summary:        Quanta
+Group:          Graphical desktop/KDE
+Provides:       quanta4
+Requires:       kde4-kimagemapeditor
+Requires:       kde4-klinkstatus
+Requires:       kde4-kfilereplace
+Requires:       kde4-kommander
+Requires:       tidy
+Requires:       %name-core
+%description -n kde4-quanta
 
-#%_iconsdir/*/*/*/klinkstat*
-%_iconsdir/*/*/actions/*
-%_iconsdir/*/*/*/quanta*
-%dir %_datadir/apps/kxsldbg/
-%_datadir/apps/kxsldbg/*
-%dir %_datadir/apps/kxsldbgpart/
-%_datadir/apps/kxsldbgpart/*
-%_libdir/kde4/libkxsldbgpart.*
-%_datadir/kde4/services/kxsldbg_part.desktop
+A html editor for the K Desktop Environment.
 
-%_datadir/apps/kdevusertoolbars/pics/*.png
-%_datadir/apps/xsldbg/*.xml
-%_datadir/apps/xsldbg/*.xsl
-%_datadir/apps/xsldbg/testdoc.dtd
-%_datadir/apps/xsldbg/testdoc.xml
-%_datadir/apps/xsldbg/testdoc.xsl
-%_datadir/apps/xsldbg/xsldbghelp.xsl
-%_datadir/config.kcfg/quanta.kcfg
-%_datadir/kde4/services/kdevcreatequantaproject.desktop
-%_datadir/kde4/services/kdevhtmlpreview.desktop
-%_datadir/kde4/services/kdevquantacore.desktop
-%_datadir/kde4/services/kdevquantafilestree.desktop
-%_datadir/kde4/services/kdevstructuretree.desktop
-%_datadir/kde4/services/kdevtagdialogs.desktop
-%_datadir/kde4/services/kdevtemplatestree.desktop
-%_datadir/kde4/services/kdevusertoolbars.desktop
-%_datadir/kde4/servicetypes/kdevelopquanta.desktop
-
-%_datadir/apps/kdevcreatequantaproject/kdevcreatequantaproject.rc
-%_datadir/apps/kdevcreatequantaproject/pics/*.png
-%_datadir/apps/kdevcreatequantaproject/quanta-project.template
-%_datadir/apps/kdevelop/profiles/IDE/quanta/profile.config
-%_datadir/apps/kdevelop/profiles/IDE/quanta/quanta.appwizard
-%_datadir/apps/kdevhtmlpreview/kdevhtmlpreview.rc
-%_datadir/apps/kdevquantacore/kdevquantacore.rc
-%_datadir/apps/kdevquantafilestree/kdevquantafilestree.rc
-%_datadir/apps/kdevstructuretree/kdevstructuretree.rc
-%_datadir/apps/kdevtagdialogs/kdevtagdialogs.rc
-%_datadir/apps/kdevtemplatestree/kdevtemplatestree.rc
-%_datadir/apps/kdevusertoolbars/global
-%_datadir/apps/kdevusertoolbars/kdevusertoolbars.rc
-
-%dir %_docdir/HTML/en/quanta/
-%doc %_docdir/HTML/en/quanta/*.png
-%doc %_docdir/HTML/en/quanta/*.bz2
-%doc %_docdir/HTML/en/quanta/*.docbook
-
-%dir %_docdir/HTML/en/klinkstatus/
-%doc %_docdir/HTML/en/klinkstatus/*.bz2
-%doc %_docdir/HTML/en/klinkstatus/*.docbook
-%doc %_docdir/HTML/en/klinkstatus/screenshot.png
-
-%dir %_docdir/HTML/en/kxsldbg/
-%doc %_docdir/HTML/en/kxsldbg/*.png
-%doc %_docdir/HTML/en/kxsldbg/*.bz2
-%doc %_docdir/HTML/en/kxsldbg/*.docbook
-
-
-%dir %_docdir/HTML/en/xsldbg/
-%doc %_docdir/HTML/en/xsldbg/*.bz2
-%doc %_docdir/HTML/en/xsldbg/*.docbook
-
-%_datadir/apps/kdevappwizard/templates/quanta.tar.bz2
+%files -n kde4-quanta
+%defattr(-,root,root)
+%dir %_kde_docdir/HTML/en/quanta
+%doc %_kde_docdir/HTML/en/quanta/*.docbook
+%doc %_kde_docdir/HTML/en/quanta/*.png
+%doc %_kde_docdir/HTML/en/quanta/index.cache.bz2
 
 #--------------------------------------------------------------------------
 
-%package kfilereplace
+%package        kde4-quanta-doc
+Summary:        Documentation about Quanta
+Group:          Books/Computer books
+
+Provides:       quanta4-doc
+%description    kde4-quanta-doc
+
+Documentation for Quanta
+
+%files kde4-quanta-doc
+%dir %_kde_docdir/quanta
+%dir %_kde_docdir/quanta/css
+%doc %_kde_docdir/quanta/css/*
+%dir %_kde_docdir/quanta/html
+%doc %_kde_docdir/quanta/html/*
+%dir %_kde_docdir/quanta/javascript
+%doc %_kde_docdir/quanta/javascript/*
+%dir %_kde_docdir/quanta/mysql5
+%doc %_kde_docdir/quanta/mysql5/*
+%dir %_kde_docdir/quanta/php
+%doc %_kde_docdir/quanta/php/*
+
+#--------------------------------------------------------------------------
+
+%package -n kde4-klinkstatus
+Summary:        klinkstatus
+Group:          Graphical desktop/KDE
+Provides:       klinkstatus4
+Requires:       %name-core
+%description -n kde4-klinkstatus
+
+    * Support several protocols (allowing fast checking of 
+	local documents): http, ftp, ssh (fish or sftp) and file.
+    * Proxy support
+    * Allows authentication when checking restricted documents
+    * Supports the latest Web standards-- HTML 4.0, HTTP 1.1
+    * Server-Side Includes (SSI, aka SHTML) are supported and checked
+    * Regular expressions to restrict which URLs are searched
+    * Show link results as they are checked
+    * Tree like view (that reflects the file structure of the documents) or flat view
+    * Limit the search depth
+    * Fragment identifiers ("#" anchor links that point to a specific
+	 section in a document) are supported and checked
+    * Pause/Resume of checking session
+    * History of checked URLs
+    * Tabbed checking (allow multiple sessions at the same time)
+    * Filter checked links (good, broken, malformed and undetermined)
+    * Configurable number of simultaneous connections (performance tunning)
+    * Other configurable options like "check external links", 
+	"check parent folders", "timeout"
+    * Good integration with Quanta+
+
+
+%files -n kde4-klinkstatus
+%defattr(-,root,root)
+%dir %_kde_docdir/HTML/en/klinkstatus
+%doc %_kde_docdir/HTML/en/klinkstatus/*.docbook
+%doc %_kde_docdir/HTML/en/klinkstatus/*.png
+%doc %_kde_docdir/HTML/en/klinkstatus/index.cache.bz2
+
+#--------------------------------------------------------------------------
+
+%package -n kde4-kfilereplace
 Summary:	Kfilereplace
 Group:		Graphical desktop/KDE
 Provides:	kfilereplace4
+Requires:       %name-core
 
-%description kfilereplace
+%description -n kde4-kfilereplace
 Kfilereplace program
 
-%post kfilereplace
+%post -n kde4-kfilereplace
 %{update_desktop_database}
 %update_icon_cache crystalsvg
 %update_icon_cache hicolor
 
-%postun kfilereplace
+%postun -n kde4-kfilereplace
 %{clean_desktop_database}
 %clean_icon_cache crystalsvg
 %clean_icon_cache hicolor
 
-%files kfilereplace
+%files -n kde4-kfilereplace
 %defattr(-,root,root)
-%_bindir/kfilereplace
-%dir %_datadir/apps/kfilereplacepart
-%_datadir/apps/kfilereplacepart/*
-%dir %_datadir/apps/kfilereplace/
-%_datadir/apps/kfilereplace/*
-%_datadir/kde4/services/kfilereplacepart.desktop
-%_datadir/applications/kde4/kfilereplace.desktop
-%_libdir/kde4/libkfilereplacepart.*
-%_iconsdir/*/*/*/kfilerep*
-
-%dir %_docdir/HTML/en/kfilereplace/
-%doc %_docdir/HTML/en/kfilereplace/*.png
-%doc %_docdir/HTML/en/kfilereplace/*.bz2
-%doc %_docdir/HTML/en/kfilereplace/*.docbook
+%_kde_bindir/kfilereplace
+%_kde_datadir/applications/kde4/kfilereplace.desktop
+%_kde_appsdir/kfilereplace/kfilereplaceui.rc
+%_kde_appsdir/kfilereplacepart/icons/crystalsvg/22x22/actions/*
+%_kde_appsdir/kfilereplacepart/kfilereplacepartui.rc
+%doc %_kde_docdir/HTML/en/kfilereplace/*.png
+%doc %_kde_docdir/HTML/en/kfilereplace/index.cache.bz2
+%doc %_kde_docdir/HTML/en/kfilereplace/index.docbook
+%_kde_datadir/icons/hicolor/*/apps/kfilereplace.png
+%_kde_datadir/kde4/services/kfilereplacepart.desktop
+%_datadir/dbus-1/interfaces/org.kde.kfilereplace.xml
+%_kde_libdir/kde4/libkfilereplacepart.so
 
 #--------------------------------------------------------------------------
 
-%package kommander
+%package -n kde4-kommander
 Summary:	Kommander
 Group:		Graphical desktop/KDE
 Provides:	kommander4
 Requires:	%lib_name-kommander = %epoch:%version-%release
 Requires(post): desktop-file-utils
 Requires(postun): desktop-file-utils
+Requires:       %name-core
 
-%description kommander
+%description -n kde4-kommander
 Kommander program
 
-%post kommander
+%post -n kde4-kommander
 %{update_desktop_database}
 %update_icon_cache crystalsvg
 %update_icon_cache hicolor
 
-%postun kommander
+%postun -n kde4-kommander
 %{clean_desktop_database}
 %clean_icon_cache crystalsvg
 %clean_icon_cache hicolor
 
-%files kommander
+%files -n kde4-kommander
 %defattr(-,root,root)
+
+
 #--------------------------------------------------------------------------
 
-%package -n %lib_name-kommander
-Summary:	Library for Kommander
-Group:		Graphical desktop/KDE
+%package -n kde4-kimagemapeditor
+Summary:        Kimagemapeditor
+Group:          Graphical desktop/KDE
+Provides:       kimagemapeditor4
+Requires(post): desktop-file-utils
+Requires(postun): desktop-file-utils
+Requires:       %name-core
 
-%description -n %lib_name-kommander
-Kommander program
+%description -n kde4-kimagemapeditor
+kimagemapeditor program
 
-%post -n %lib_name-kommander -p /sbin/ldconfig
-%postun -n %lib_name-kommander -p /sbin/ldconfig
+%post -n kde4-kimagemapeditor
+%{update_desktop_database}
+%update_icon_cache crystalsvg
+%update_icon_cache hicolor
 
-%files -n %lib_name-kommander
+%postun -n kde4-kimagemapeditor
+%{clean_desktop_database}
+%clean_icon_cache locolor 
+%clean_icon_cache hicolor
+
+%files -n kde4-kimagemapeditor
 %defattr(-,root,root)
+%_kde_bindir/kimagemapeditor
+%_kde_datadir/applications/kde4/kimagemapeditor.desktop
+%_kde_appsdir/kimagemapeditor/*.rc
+%_kde_appsdir/kimagemapeditor/*.png
+%dir %_kde_docdir/HTML/en/kimagemapeditor
+%doc %_kde_docdir/HTML/en/kimagemapeditor/index.cache.bz2
+%doc %_kde_docdir/HTML/en/kimagemapeditor/index.docbook
+%_kde_datadir/icons/locolor/*/apps/kimagemapeditor.png
+%_kde_datadir/icons/hicolor/*/apps/kimagemapeditor.png
+%_kde_datadir/kde4/services/kimagemapeditorpart.desktop
+%_kde_libdir/kde4/libkimagemapeditor.so
+
 #--------------------------------------------------------------------------
 
-%package -n %lib_name-kommander-devel
-Summary:	Header for kommander
-Group:		Development/KDE and Qt
-Requires:	%lib_name-kommander = %epoch:%version-%release
+%package -n kde4-kxsldbg
+Summary:        Kxsldbg
+Group:          Graphical desktop/KDE
+Provides:       kxsldbg4
+Requires(post): desktop-file-utils
+Requires(postun): desktop-file-utils
+Requires:       %name-core
 
-%description -n %lib_name-kommander-devel
-Header for Kommander
+%description -n kde4-kxsldbg
+kxsldbg program
 
-%files -n %lib_name-kommander-devel
+%post -n kde4-kxsldbg
+%{update_desktop_database}
+%update_icon_cache crystalsvg
+%update_icon_cache hicolor
+
+%postun -n kde4-kxsldbg
+%{clean_desktop_database}
+%clean_icon_cache crystalsvg
+%clean_icon_cache hicolor
+
+%files -n kde4-kxsldbg
 %defattr(-,root,root)
-#--------------------------------------------------------------------------
-
-%package -n %lib_name
-Summary:    Library for kdewebdev
-Group:      Graphical desktop/KDE
-
-%description -n %lib_name
-Library files for kdewebdev.
-
-%files -n %lib_name
-%defattr(-,root,root)
-%_libdir/libkdevquanta.so.*
-#--------------------------------------------------------------------------
-
-%package -n %lib_name-devel
-Summary:    Development library for kdewebdev
-Group:      Development/KDE and Qt
-
-%description -n %lib_name-devel
-Development library files for quanta.
-%files -n %lib_name-devel
-%defattr(-,root,root)
-%_datadir/dbus-1/interfaces/org.kde.kfilereplace.xml
+%_kde_bindir/kxsldbg
+%_kde_bindir/xsldbg
+%_kde_datadir/applications/kde4/kxsldbg.desktop
+%dir %_kde_appsdir/kxsldbg
+%_kde_appsdir/kxsldbg/*.xml
+%_kde_appsdir/kxsldbg/*.xsl
+%_kde_appsdir/kxsldbg/*.dtd
+%_kde_appsdir/kxsldbg/kxsldbg_shell.rc
+%_kde_appsdir/kxsldbgpart/kxsldbg_part.rc
+%dir %_kde_appsdir/xsldbg
+%_kde_appsdir/xsldbg/*.xml
+%_kde_appsdir/xsldbg/*.xsl
+%_kde_appsdir/xsldbg/*.dtd
+%doc %_kde_docdir/HTML/en/kxsldbg/*.png
+%doc %_kde_docdir/HTML/en/kxsldbg/index.cache.bz2
+%doc %_kde_docdir/HTML/en/kxsldbg/*.docbook
+%doc %_kde_docdir/HTML/en/xsldbg/index.cache.bz2
+%doc %_kde_docdir/HTML/en/xsldbg/*.docbook
+%_kde_datadir/icons/hicolor/*/actions/xsldbg_*
+%_kde_datadir/kde4/services/kxsldbg_part.desktop
 %_datadir/dbus-1/interfaces/org.kde.kxsldbg.kxsldbg.xml
-%_libdir/libkdevquanta.so
+%_kde_libdir/kde4/libkxsldbgpart.so
+
 #--------------------------------------------------------------------------
 
 %prep
-%setup -q -nkdewebdev-%version-%branch_date
-
+%setup -q -n kdewebdev -a 1 -a 2 -a 3 -a 4 -a 5
+%patch0 -p0
 
 %build
-cd $RPM_BUILD_DIR/kdewebdev-%version-%branch_date
-mkdir build
-cd build
-export QTDIR=/usr/lib/qt4/
-export PATH=$QTDIR/bin:$PATH
+cd $RPM_BUILD_DIR/kdewebdev
 
-cmake -DCMAKE_INSTALL_PREFIX=%_prefix \
+%cmake_kde4 \
 %if %use_enable_final
       -DKDE4_ENABLE_FINAL=ON \
 %endif
@@ -313,39 +359,27 @@ cmake -DCMAKE_INSTALL_PREFIX=%_prefix \
       -DKDE4_ENABLE_FPIE=ON \
 %endif
 %if %unstable
-      -DCMAKE_BUILD_TYPE=Debug \
+      -DCMAKE_BUILD_TYPE=debug
 %endif
-%if "%{_lib}" != "lib"
-      -DLIB_SUFFIX=64 \
-%endif
-        ../
 
 %make
 
 
 %install
 rm -fr %buildroot
-cd $RPM_BUILD_DIR/kdewebdev-%version-%branch_date
+cd $RPM_BUILD_DIR/kdewebdev
 cd build
 
 make DESTDIR=%buildroot install
 
-
-#kdedesktop2mdkmenu.pl kdewebdev "Internet/Web editors" $RPM_BUILD_ROOT/%_datadir/applications/kde/quanta.desktop $RPM_BUILD_ROOT/%_menudir/quanta
-
-#kdedesktop2mdkmenu.pl kdewebdev-kommander "More applications/Development/Development Environments" $RPM_BUILD_ROOT/%_datadir/applications/kde/kmdr-editor.desktop $RPM_BUILD_ROOT/%_menudir/kdewebdev-kmdr-editor
-
-#kdedesktop2mdkmenu.pl kdewebdev "More applications/Development/Development Environments" $RPM_BUILD_ROOT/%_datadir/applications/kde/kxsldbg.desktop $RPM_BUILD_ROOT/%_menudir/kdewebdev-kxsldbg
-
-#kdedesktop2mdkmenu.pl kdewebdev "More applications/Development/Development Environments" $RPM_BUILD_ROOT/%_datadir/applications/kde/klinkstatus.desktop $RPM_BUILD_ROOT/%_menudir/kdewebdev-klinkstatus
-
-#kdedesktop2mdkmenu.pl kdewebdev-kfilereplace "More applications/Development/Development environments" $RPM_BUILD_ROOT/%_datadir/applications/kde/kfilereplace.desktop $RPM_BUILD_ROOT/%_menudir/kdewebdev-kfilereplace
-
-#kdedesktop2mdkmenu.pl kdewebdev-kommander "More applications/Development/Development Environments" $RPM_BUILD_ROOT/%_datadir/applications/kde/kimagemapeditor.desktop $RPM_BUILD_ROOT/%_menudir/kdewebdev-kimagemapeditor
-
+%__mkdir -p %buildroot%_kde_datadir/doc/quanta
+cp -r css/ %buildroot%_kde_datadir/doc/quanta
+cp -r html/ %buildroot%_kde_datadir/doc/quanta
+cp -r javascript/ %buildroot%_kde_datadir/doc/quanta
+cp -r mysql5/ %buildroot%_kde_datadir/doc/quanta
+cp -r php/ %buildroot%_kde_datadir/doc/quanta
 
 
 %clean
 rm -rf $RPM_BUILD_ROOT
-
 
