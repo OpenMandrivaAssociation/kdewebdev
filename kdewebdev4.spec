@@ -347,7 +347,6 @@ kxsldbg program
 %setup -q -n kdewebdev 
 #TODO Readd
 #-a 1 -a 2 -a 3 -a 4 -a 5
-%patch0 -p0
 
 %build
 cd $RPM_BUILD_DIR/kdewebdev
