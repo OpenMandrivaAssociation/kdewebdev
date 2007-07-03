@@ -26,7 +26,7 @@
 
 Name:		kdewebdev4
 Version: 	3.91
-Release:    	%mkrel 0.%revision.1
+Release:    	%mkrel 0.%revision.2
 License:	GPL
 Summary:	A web editor for the KDE Desktop Environment
 Epoch:		1
@@ -41,16 +41,15 @@ Source2:        html.tar.bz2
 Source3:        javascript.tar.bz2
 Source4:        mysql5-quanta-doc-20051117.tar.bz2
 Source5:        php.tar.bz2
-Patch0:		kdewebdev-fix-cmake.patch
 Group:		Graphical desktop/KDE
 BuildRoot:	%_tmppath/%name-%version-%release-root
 BuildRequires:  pam
 BuildRequires:  diffutils
 BuildRequires:	libxml2-devel
 BuildRequires:	libxslt-devel
-BuildRequires: kdelibs4-devel
+BuildRequires:  kdelibs4-devel
 BuildRequires:	freetype2 
-#BuildRequires:	kdevelop4-devel
+BuildRequires:	kdevplatform4-devel
 Requires:		tidy
 Requires(post): desktop-file-utils
 Requires(postun): desktop-file-utils
