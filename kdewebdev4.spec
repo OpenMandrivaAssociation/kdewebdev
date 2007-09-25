@@ -1,4 +1,4 @@
-%define revision 682032
+%define revision 711694
 
 %define use_enable_final 0
 %{?_no_enable_final: %{expand: %%global use_enable_final 0}}
@@ -24,33 +24,33 @@
 %define lib_name %mklibname %name %lib_major
 
 
-Name:		kdewebdev4
-Version: 	3.91
-Release:    	%mkrel 0.%revision.2
-License:	GPL
-Summary:	A web editor for the KDE Desktop Environment
-Epoch:		1
-URL:		http://kdewebdev.org/
+Name: kdewebdev4
+Version: 3.93.0
+Release: %mkrel 0.%revision.2
+License: GPL
+Summary: A web editor for the KDE Desktop Environment
+Epoch: 1
+URL: http://kdewebdev.org/
 %if %branch
 Source: ftp://ftp.kde.org/pub/kde/stable/%version/src/kdewebdev-%version.%revision.tar.bz2
 %else
 Source: ftp://ftp.kde.org/pub/kde/stable/%version/src/kdewebdev-%version.tar.bz2
 %endif
-Source1:        css.tar.bz2
-Source2:        html.tar.bz2
-Source3:        javascript.tar.bz2
-Source4:        mysql5-quanta-doc-20051117.tar.bz2
-Source5:        php.tar.bz2
-Group:		Graphical desktop/KDE
-BuildRoot:	%_tmppath/%name-%version-%release-root
-BuildRequires:  pam
-BuildRequires:  diffutils
-BuildRequires:	libxml2-devel
-BuildRequires:	libxslt-devel
-BuildRequires:  kdelibs4-devel
-BuildRequires:	freetype2 
-BuildRequires:	kdevplatform4-devel
-Requires:		tidy
+Source1: css.tar.bz2
+Source2: html.tar.bz2
+Source3: javascript.tar.bz2
+Source4: mysql5-quanta-doc-20051117.tar.bz2
+Source5: php.tar.bz2
+Group: Graphical desktop/KDE
+BuildRoot: %_tmppath/%name-%version-%release-root
+BuildRequires: pam
+BuildRequires: diffutils
+BuildRequires: libxml2-devel
+BuildRequires: libxslt-devel
+BuildRequires: kdelibs4-devel
+BuildRequires: freetype2 
+BuildRequires: kdevplatform4-devel
+Requires: tidy
 Requires(post): desktop-file-utils
 Requires(postun): desktop-file-utils
 
@@ -66,10 +66,10 @@ A web editor for the KDE Desktop Environment
 
 #--------------------------------------------------------------------
 
-%package -n     %name-core
-Summary:        Common files needed by %name
-Group:          Graphical desktop/KDE
-Provides:       quanta4
+%package -n %name-core
+Summary: Common files needed by %name
+Group: Graphical desktop/KDE
+Provides: quanta4
 %description -n %name-core
 
 Common files needed by %name
@@ -110,15 +110,15 @@ Common files needed by %name
 #--------------------------------------------------------------------
 
 %package -n kde4-quanta
-Summary:        Quanta
-Group:          Graphical desktop/KDE
-Provides:       quanta4
-Requires:       kde4-kimagemapeditor
-Requires:       kde4-klinkstatus
-Requires:       kde4-kfilereplace
-Requires:       kde4-kommander
-Requires:       tidy
-Requires:       %name-core
+Summary: Quanta
+Group: Graphical desktop/KDE
+Provides: quanta4
+Requires: kde4-kimagemapeditor
+Requires: kde4-klinkstatus
+Requires: kde4-kfilereplace
+Requires: kde4-kommander
+Requires: tidy
+Requires: %name-core
 %description -n kde4-quanta
 
 A html editor for the K Desktop Environment.
@@ -157,10 +157,10 @@ A html editor for the K Desktop Environment.
 #--------------------------------------------------------------------------
 
 %package -n kde4-klinkstatus
-Summary:        klinkstatus
-Group:          Graphical desktop/KDE
-Provides:       klinkstatus4
-Requires:       %name-core
+Summary: klinkstatus
+Group: Graphical desktop/KDE
+Provides: klinkstatus4
+Requires: %name-core
 %description -n kde4-klinkstatus
 
     * Support several protocols (allowing fast checking of 
@@ -195,10 +195,10 @@ Requires:       %name-core
 #--------------------------------------------------------------------------
 
 %package -n kde4-kfilereplace
-Summary:	Kfilereplace
-Group:		Graphical desktop/KDE
-Provides:	kfilereplace4
-Requires:       %name-core
+Summary: kfilereplace
+Group: Graphical desktop/KDE
+Provides: kfilereplace4
+Requires: %name-core
 
 %description -n kde4-kfilereplace
 Kfilereplace program
@@ -231,13 +231,13 @@ Kfilereplace program
 #--------------------------------------------------------------------------
 
 %package -n kde4-kommander
-Summary:	Kommander
-Group:		Graphical desktop/KDE
-Provides:	kommander4
-Requires:	%lib_name-kommander = %epoch:%version-%release
+Summary: Kommander
+Group: Graphical desktop/KDE
+Provides: kommander4
+Requires: %lib_name-kommander = %epoch:%version-%release
 Requires(post): desktop-file-utils
 Requires(postun): desktop-file-utils
-Requires:       %name-core
+Requires: %name-core
 
 %description -n kde4-kommander
 Kommander program
@@ -259,12 +259,12 @@ Kommander program
 #--------------------------------------------------------------------------
 
 %package -n kde4-kimagemapeditor
-Summary:        Kimagemapeditor
-Group:          Graphical desktop/KDE
-Provides:       kimagemapeditor4
+Summary: Kimagemapeditor
+Group: Graphical desktop/KDE
+Provides: kimagemapeditor4
 Requires(post): desktop-file-utils
 Requires(postun): desktop-file-utils
-Requires:       %name-core
+Requires: %name-core
 
 %description -n kde4-kimagemapeditor
 kimagemapeditor program
@@ -296,12 +296,12 @@ kimagemapeditor program
 #--------------------------------------------------------------------------
 
 %package -n kde4-kxsldbg
-Summary:        Kxsldbg
-Group:          Graphical desktop/KDE
-Provides:       kxsldbg4
+Summary: Kxsldbg
+Group: Graphical desktop/KDE
+Provides: kxsldbg4
 Requires(post): desktop-file-utils
 Requires(postun): desktop-file-utils
-Requires:       %name-core
+Requires: %name-core
 
 %description -n kde4-kxsldbg
 kxsldbg program
@@ -344,32 +344,15 @@ kxsldbg program
 #--------------------------------------------------------------------------
 
 %prep
-%setup -q -n kdewebdev 
+%setup -q -n kdewebdev-%version 
 #TODO Readd
 #-a 1 -a 2 -a 3 -a 4 -a 5
 
 %build
-cd $RPM_BUILD_DIR/kdewebdev
-
-%cmake_kde4 \
-      -DDBUS_SERVICES_DIR=%_kde_datadir/dbus-1/services \
-      -DDBUS_INTERFACES_DIR=%_kde_datadir/dbus-1/interfaces \
-%if %use_enable_final
-      -DKDE4_ENABLE_FINAL=ON \
-%endif
-%if %use_enable_pie
-      -DKDE4_ENABLE_FPIE=ON \
-%endif
-%if %unstable
-      -DCMAKE_BUILD_TYPE=debug
-%endif
-
-%make
-
+%cmake_kde4
 
 %install
 rm -fr %buildroot
-cd $RPM_BUILD_DIR/kdewebdev
 cd build
 
 make DESTDIR=%buildroot install
