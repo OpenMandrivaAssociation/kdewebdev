@@ -19,6 +19,8 @@
 %define dont_strip 1
 %endif
 
+%define with_klinkstatus 0
+
 %define lib_name_orig lib%name
 %define lib_major 0
 %define lib_name %mklibname %name %lib_major
@@ -50,13 +52,18 @@ BuildRequires: libxslt-devel
 BuildRequires: kdelibs4-devel
 BuildRequires: freetype2 
 BuildRequires: kdevplatform4-devel
+%if %with_klinkstatus
+BuildRequires: tidy-devel
 Requires: tidy
+%endif
 Requires(post): desktop-file-utils
 Requires(postun): desktop-file-utils
 
 Requires: kde4-quanta
 Requires: kde4-kimagemapeditor
+%if %with_klinkstatus
 Requires: kde4-klinkstatus
+%endif
 Requires: kde4-kfilereplace
 Requires: kde4-kommander
 
@@ -114,7 +121,9 @@ Summary: Quanta
 Group: Graphical desktop/KDE
 Provides: quanta4
 Requires: kde4-kimagemapeditor
+%if %with_klinkstatus
 Requires: kde4-klinkstatus
+%endif
 Requires: kde4-kfilereplace
 Requires: kde4-kommander
 Requires: tidy
@@ -125,6 +134,19 @@ A html editor for the K Desktop Environment.
 
 %files -n kde4-quanta
 %defattr(-,root,root)
+%_kde_bindir/quanta
+%_kde_libdir/kde4/libkdev*
+%_kde_libdir/kde4/quanta*
+%_kde_libdir/libkdevquanta.so.*
+%_kde_datadir/applications/kde4/quanta.desktop
+%_kde_datadir/config.kcfg/quanta.kcfg
+%_kde_datadir/kde4/services/kdev*
+%_kde_datadir/kde4/services/quanta*
+%_kde_datadir/kde4/servicetypes/kdev*
+%_kde_appsdir/kdev*/*
+%_kde_appsdir/quanta*/*
+%_kde_iconsdir/*/*/apps/quanta*
+
 %dir %_kde_docdir/HTML/en/quanta
 %doc %_kde_docdir/HTML/en/quanta/*.docbook
 %doc %_kde_docdir/HTML/en/quanta/*.png
@@ -156,6 +178,7 @@ A html editor for the K Desktop Environment.
 #
 #--------------------------------------------------------------------------
 
+%if %with_klinkstatus
 %package -n kde4-klinkstatus
 Summary: klinkstatus
 Group: Graphical desktop/KDE
@@ -191,7 +214,7 @@ Requires: %name-core
 %doc %_kde_docdir/HTML/en/klinkstatus/*.docbook
 %doc %_kde_docdir/HTML/en/klinkstatus/*.png
 %doc %_kde_docdir/HTML/en/klinkstatus/index.cache.bz2
-
+%endif
 #--------------------------------------------------------------------------
 
 %package -n kde4-kfilereplace
@@ -225,7 +248,7 @@ Kfilereplace program
 %doc %_kde_docdir/HTML/en/kfilereplace/index.docbook
 %_kde_iconsdir/hicolor/*/apps/kfilereplace.png
 %_kde_datadir/kde4/services/kfilereplacepart.desktop
-%_kde_datadir/dbus-1/interfaces/org.kde.kfilereplace.xml
+%_datadir/dbus-1/interfaces/org.kde.kfilereplace.xml
 %_kde_libdir/kde4/libkfilereplacepart.so
 
 #--------------------------------------------------------------------------
@@ -338,7 +361,7 @@ kxsldbg program
 %doc %_kde_docdir/HTML/en/xsldbg/*.docbook
 %_kde_datadir/icons/hicolor/*/actions/xsldbg_*
 %_kde_datadir/kde4/services/kxsldbg_part.desktop
-%_kde_datadir/dbus-1/interfaces/org.kde.kxsldbg.kxsldbg.xml
+%_datadir/dbus-1/interfaces/org.kde.kxsldbg.kxsldbg.xml
 %_kde_libdir/kde4/libkxsldbgpart.so
 
 #--------------------------------------------------------------------------
@@ -365,6 +388,7 @@ make DESTDIR=%buildroot install
 #cp -r mysql5/ %buildroot%_kde_datadir/doc/quanta
 #cp -r php/ %buildroot%_kde_datadir/doc/quanta
 
+rm -f %buildroot%_kde_libdir/libkdev*.so
 
 %clean
 rm -rf $RPM_BUILD_ROOT
