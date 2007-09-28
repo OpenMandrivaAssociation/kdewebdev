@@ -28,7 +28,7 @@
 
 Name: kdewebdev4
 Version: 3.93.0
-Release: %mkrel 0.%revision.2
+Release: %mkrel 0.%revision.3
 License: GPL
 Summary: A web editor for the KDE Desktop Environment
 Epoch: 1
@@ -257,7 +257,6 @@ Kfilereplace program
 Summary: Kommander
 Group: Graphical desktop/KDE
 Provides: kommander4
-Requires: %lib_name-kommander = %epoch:%version-%release
 Requires(post): desktop-file-utils
 Requires(postun): desktop-file-utils
 Requires: %name-core
