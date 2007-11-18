@@ -1,4 +1,4 @@
-%define revision 731780
+%define revision 736231
 
 %define use_enable_final 0
 %{?_no_enable_final: %{expand: %%global use_enable_final 0}}
@@ -19,7 +19,7 @@
 %define dont_strip 1
 %endif
 
-%define with_klinkstatus 0
+%define with_klinkstatus 1
 
 %define lib_name_orig lib%name
 %define lib_major 0
@@ -27,7 +27,7 @@
 
 
 Name: kdewebdev4
-Version: 3.95.1
+Version: 3.96.0
 Release: %mkrel 0.%revision.1
 License: GPL
 Summary: A web editor for the KDE Desktop Environment
@@ -210,10 +210,25 @@ Requires: %name-core
 
 %files -n kde4-klinkstatus
 %defattr(-,root,root)
-%dir %_kde_docdir/HTML/en/klinkstatus
-%doc %_kde_docdir/HTML/en/klinkstatus/*.docbook
-%doc %_kde_docdir/HTML/en/klinkstatus/*.png
-%doc %_kde_docdir/HTML/en/klinkstatus/index.cache.bz2
+%{_kde_bindir}/klinkstatus
+%{_kde_libdir}/kde4/klinkstatuspart.so
+%{_kde_datadir}/applications/kde4/klinkstatus.desktop
+%dir %{_kde_appsdir}/klinkstatus
+%{_kde_appsdir}/klinkstatus/klinkstatus_shell.rc
+%dir %{_kde_appsdir}/klinkstatus/styles
+%{_kde_appsdir}/klinkstatus/styles/results_stylesheet.xsl
+%dir %{_kde_appsdir}/klinkstatuspart
+%{_kde_appsdir}/klinkstatuspart/klinkstatus_part.rc
+%{_kde_appsdir}/klinkstatuspart/pics/304.png
+%{_kde_iconsdir}/crystalsvg/16x16/actions/bug.png
+%{_kde_iconsdir}/hicolor/*/apps/klinkstatus.png
+%{_kde_datadir}/kde4/services/klinkstatus_part.desktop
+%{_datadir}/dbus-1/interfaces/org.kdewebdev.klinkstatus.ISearchManager.xml
+
+#%dir %_kde_docdir/HTML/en/klinkstatus
+#%doc %_kde_docdir/HTML/en/klinkstatus/*.docbook
+#%doc %_kde_docdir/HTML/en/klinkstatus/*.png
+#%doc %_kde_docdir/HTML/en/klinkstatus/index.cache.bz2
 %endif
 #--------------------------------------------------------------------------
 
@@ -310,7 +325,6 @@ kimagemapeditor program
 %dir %_kde_docdir/HTML/en/kimagemapeditor
 %doc %_kde_docdir/HTML/en/kimagemapeditor/index.cache.bz2
 %doc %_kde_docdir/HTML/en/kimagemapeditor/index.docbook
-%_kde_datadir/icons/locolor/*/apps/kimagemapeditor.png
 %_kde_datadir/icons/hicolor/*/apps/kimagemapeditor.png
 %_kde_datadir/kde4/services/kimagemapeditorpart.desktop
 %_kde_libdir/kde4/libkimagemapeditor.so
