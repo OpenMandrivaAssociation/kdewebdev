@@ -1,4 +1,4 @@
-%define revision 736231
+%define revision 739968
 
 %define use_enable_final 0
 %{?_no_enable_final: %{expand: %%global use_enable_final 0}}
@@ -27,7 +27,7 @@
 
 
 Name: kdewebdev4
-Version: 3.96.0
+Version: 3.96.1
 Release: %mkrel 0.%revision.1
 License: GPL
 Summary: A web editor for the KDE Desktop Environment
@@ -220,7 +220,6 @@ Requires: %name-core
 %dir %{_kde_appsdir}/klinkstatuspart
 %{_kde_appsdir}/klinkstatuspart/klinkstatus_part.rc
 %{_kde_appsdir}/klinkstatuspart/pics/304.png
-%{_kde_iconsdir}/crystalsvg/16x16/actions/bug.png
 %{_kde_iconsdir}/hicolor/*/apps/klinkstatus.png
 %{_kde_datadir}/kde4/services/klinkstatus_part.desktop
 %{_datadir}/dbus-1/interfaces/org.kdewebdev.klinkstatus.ISearchManager.xml
