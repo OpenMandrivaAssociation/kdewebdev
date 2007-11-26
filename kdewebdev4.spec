@@ -68,7 +68,6 @@ Requires: kde4-kfilereplace
 Requires: kde4-kommander
 
 %description
-
 A web editor for the KDE Desktop Environment
 
 #--------------------------------------------------------------------
