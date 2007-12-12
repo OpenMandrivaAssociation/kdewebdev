@@ -43,6 +43,7 @@ Source2: html.tar.bz2
 Source3: javascript.tar.bz2
 Source4: mysql5-quanta-doc-20051117.tar.bz2
 Source5: php.tar.bz2
+Patch0:	 kdewebdev-3.97.1-fix-build.patch
 Group: Graphical desktop/KDE
 BuildRoot: %_tmppath/%name-%version-%release-root
 BuildRequires: pam
@@ -223,10 +224,10 @@ Requires: %name-core
 %{_kde_datadir}/kde4/services/klinkstatus_part.desktop
 %{_datadir}/dbus-1/interfaces/org.kdewebdev.klinkstatus.ISearchManager.xml
 
-#%dir %_kde_docdir/HTML/en/klinkstatus
-#%doc %_kde_docdir/HTML/en/klinkstatus/*.docbook
-#%doc %_kde_docdir/HTML/en/klinkstatus/*.png
-#%doc %_kde_docdir/HTML/en/klinkstatus/index.cache.bz2
+%dir %_kde_docdir/HTML/en/klinkstatus
+%doc %_kde_docdir/HTML/en/klinkstatus/*.docbook
+%doc %_kde_docdir/HTML/en/klinkstatus/*.png
+%doc %_kde_docdir/HTML/en/klinkstatus/index.cache.bz2
 %endif
 #--------------------------------------------------------------------------
 
@@ -381,7 +382,7 @@ kxsldbg program
 %setup -q -n kdewebdev-%version 
 #TODO Readd
 #-a 1 -a 2 -a 3 -a 4 -a 5
-
+%patch0 -p0
 %build
 %cmake_kde4
 
