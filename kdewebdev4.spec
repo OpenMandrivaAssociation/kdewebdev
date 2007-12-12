@@ -1,4 +1,4 @@
-%define revision 739968
+%define revision 746427
 
 %define use_enable_final 0
 %{?_no_enable_final: %{expand: %%global use_enable_final 0}}
@@ -27,7 +27,7 @@
 
 
 Name: kdewebdev4
-Version: 3.96.1
+Version: 3.97.1
 Release: %mkrel 0.%revision.1
 License: GPL
 Summary: A web editor for the KDE Desktop Environment
