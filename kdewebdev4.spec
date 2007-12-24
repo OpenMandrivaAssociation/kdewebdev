@@ -1,4 +1,4 @@
-%define revision 746427
+%define revision 751978
 
 %define use_enable_final 0
 %{?_no_enable_final: %{expand: %%global use_enable_final 0}}
@@ -28,14 +28,15 @@
 
 Name: kdewebdev4
 Version: 3.97.1
-Release: %mkrel 0.%revision.1
 License: GPL
 Summary: A web editor for the KDE Desktop Environment
 Epoch: 1
 URL: http://kdewebdev.org/
 %if %branch
+Release: %mkrel 0.%revision.1
 Source: ftp://ftp.kde.org/pub/kde/stable/%version/src/kdewebdev-%version.%revision.tar.bz2
 %else
+Release: %mkrel 1
 Source: ftp://ftp.kde.org/pub/kde/stable/%version/src/kdewebdev-%version.tar.bz2
 %endif
 Source1: css.tar.bz2
@@ -43,7 +44,6 @@ Source2: html.tar.bz2
 Source3: javascript.tar.bz2
 Source4: mysql5-quanta-doc-20051117.tar.bz2
 Source5: php.tar.bz2
-Patch0:	 kdewebdev-3.97.1-fix-build.patch
 Group: Graphical desktop/KDE
 BuildRequires: pam
 BuildRequires: diffutils
@@ -381,7 +381,6 @@ kxsldbg program
 %setup -q -n kdewebdev-%version 
 #TODO Readd
 #-a 1 -a 2 -a 3 -a 4 -a 5
-%patch0 -p0
 %build
 %cmake_kde4
 
