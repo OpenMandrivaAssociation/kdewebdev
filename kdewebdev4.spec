@@ -45,6 +45,7 @@ Source3: javascript.tar.bz2
 Source4: mysql5-quanta-doc-20051117.tar.bz2
 Source5: php.tar.bz2
 Group: Graphical desktop/KDE
+BuildRoot: %_tmppath/%name-%version-%release-root
 BuildRequires: pam
 BuildRequires: diffutils
 BuildRequires: libxml2-devel
