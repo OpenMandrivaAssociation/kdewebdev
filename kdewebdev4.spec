@@ -9,7 +9,7 @@
 %define unstable 1
 %{?_unstable: %{expand: %%global unstable 1}}
 
-%define branch 1
+%define branch 0
 %{?_branch: %{expand: %%global branch 1}}
 
 %define use_enable_pie 1
@@ -27,7 +27,7 @@
 
 
 Name: kdewebdev4
-Version: 3.97.1
+Version: 4.0.0
 License: GPL
 Summary: A web editor for the KDE Desktop Environment
 Epoch: 1
@@ -52,7 +52,8 @@ BuildRequires: libxml2-devel
 BuildRequires: libxslt-devel
 BuildRequires: kdelibs4-devel
 BuildRequires: freetype2 
-BuildRequires: kdevplatform4-devel
+# Add back for 2009.0
+#BuildRequires: kdevplatform4-devel
 %if %with_klinkstatus
 BuildRequires: tidy-devel
 Requires: tidy
@@ -89,6 +90,7 @@ Common files needed by %name
 
 %files -n %name-core
 %defattr(-,root,root)
+%if 0
 %_kde_iconsdir/hicolor/16x16/actions/1downarrow.png
 %_kde_iconsdir/hicolor/16x16/actions/configure.png
 %_kde_iconsdir/hicolor/16x16/actions/exit.png
@@ -113,6 +115,19 @@ Common files needed by %name
 %_kde_iconsdir/hicolor/22x22/actions/removepoint.png
 %_kde_iconsdir/hicolor/22x22/actions/run.png
 %_kde_iconsdir/hicolor/22x22/actions/step.png
+%endif
+%_kde_iconsdir/hicolor/22x22/actions/addpoint.png
+%_kde_iconsdir/hicolor/22x22/actions/arrow.png
+%_kde_iconsdir/hicolor/22x22/actions/circle.png
+%_kde_iconsdir/hicolor/22x22/actions/circle2.png
+%_kde_iconsdir/hicolor/22x22/actions/freehand.png
+%_kde_iconsdir/hicolor/22x22/actions/lower.png
+%_kde_iconsdir/hicolor/22x22/actions/polygon.png
+%_kde_iconsdir/hicolor/22x22/actions/raise.png
+%_kde_iconsdir/hicolor/22x22/actions/rectangle.png
+%_kde_iconsdir/hicolor/22x22/actions/removepoint.png
+
+%_kde_docdir/HTML/en/xsldbg
 
 #--------------------------------------------------------------------
 
@@ -134,6 +149,7 @@ A html editor for the K Desktop Environment.
 
 %files -n kde4-quanta
 %defattr(-,root,root)
+%if 0
 %_kde_bindir/quanta
 %_kde_libdir/kde4/libkdev*
 %_kde_libdir/kde4/quanta*
@@ -151,6 +167,7 @@ A html editor for the K Desktop Environment.
 %doc %_kde_docdir/HTML/en/quanta/*.docbook
 %doc %_kde_docdir/HTML/en/quanta/*.png
 %doc %_kde_docdir/HTML/en/quanta/index.cache.bz2
+%endif
 
 #--------------------------------------------------------------------------
 #
@@ -229,6 +246,7 @@ Requires: %name-core
 %doc %_kde_docdir/HTML/en/klinkstatus/*.png
 %doc %_kde_docdir/HTML/en/klinkstatus/index.cache.bz2
 %endif
+
 #--------------------------------------------------------------------------
 
 %package -n kde4-kfilereplace
@@ -252,6 +270,7 @@ Kfilereplace program
 
 %files -n kde4-kfilereplace
 %defattr(-,root,root)
+
 %_kde_bindir/kfilereplace
 %_kde_datadir/applications/kde4/kfilereplace.desktop
 %_kde_appsdir/kfilereplace/kfilereplaceui.rc
@@ -353,6 +372,7 @@ kxsldbg program
 
 %files -n kde4-kxsldbg
 %defattr(-,root,root)
+%if 0
 %_kde_bindir/kxsldbg
 %_kde_bindir/xsldbg
 %_kde_datadir/applications/kde4/kxsldbg.desktop
@@ -375,7 +395,7 @@ kxsldbg program
 %_kde_datadir/kde4/services/kxsldbg_part.desktop
 %_datadir/dbus-1/interfaces/org.kde.kxsldbg.kxsldbg.xml
 %_kde_libdir/kde4/libkxsldbgpart.so
-
+%endif
 #--------------------------------------------------------------------------
 
 %prep
