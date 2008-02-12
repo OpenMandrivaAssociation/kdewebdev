@@ -55,7 +55,7 @@ Requires: kde4-kommander
 Requires: tidy
 Obsoletes: %name-core
 %description -n kde4-quanta
-A html editor for the K Desktop Environment.
+A HTML editor for the K Desktop Environment.
 
 %files -n kde4-quanta
 %defattr(-,root,root)
