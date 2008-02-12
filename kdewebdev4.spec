@@ -79,7 +79,6 @@ Summary: Common files needed by %name
 Group: Graphical desktop/KDE
 Provides: quanta4
 %description -n %name-core
-
 Common files needed by %name
 
 %post -n %name-core
@@ -144,7 +143,6 @@ Requires: kde4-kommander
 Requires: tidy
 Requires: %name-core
 %description -n kde4-quanta
-
 A html editor for the K Desktop Environment.
 
 %files -n kde4-quanta
@@ -202,7 +200,6 @@ Group: Graphical desktop/KDE
 Provides: klinkstatus4
 Requires: %name-core
 %description -n kde4-klinkstatus
-
     * Support several protocols (allowing fast checking of 
 	local documents): http, ftp, ssh (fish or sftp) and file.
     * Proxy support
