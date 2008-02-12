@@ -82,27 +82,27 @@ Group: Graphical desktop/KDE
 Provides: klinkstatus4
 Obsoletes: %name-core
 %description -n kde4-klinkstatus
-    * Support several protocols (allowing fast checking of 
-	local documents): http, ftp, ssh (fish or sftp) and file.
-    * Proxy support
-    * Allows authentication when checking restricted documents
-    * Supports the latest Web standards-- HTML 4.0, HTTP 1.1
-    * Server-Side Includes (SSI, aka SHTML) are supported and checked
-    * Regular expressions to restrict which URLs are searched
-    * Show link results as they are checked
-    * Tree like view (that reflects the file structure of the documents) or
-	  flat view
-    * Limit the search depth
-    * Fragment identifiers ("#" anchor links that point to a specific
-	 section in a document) are supported and checked
-    * Pause/Resume of checking session
-    * History of checked URLs
-    * Tabbed checking (allow multiple sessions at the same time)
-    * Filter checked links (good, broken, malformed and undetermined)
-    * Configurable number of simultaneous connections (performance tunning)
-    * Other configurable options like "check external links", 
-	"check parent folders", "timeout"
-    * Good integration with Quanta+
+* Support several protocols (allowing fast checking of 
+local documents): http, ftp, ssh (fish or sftp) and file.
+* Proxy support
+* Allows authentication when checking restricted documents
+* Supports the latest Web standards-- HTML 4.0, HTTP 1.1
+* Server-Side Includes (SSI, aka SHTML) are supported and checked
+* Regular expressions to restrict which URLs are searched
+* Show link results as they are checked
+* Tree like view (that reflects the file structure of the documents) or
+  flat view
+* Limit the search depth
+* Fragment identifiers ("#" anchor links that point to a specific
+ section in a document) are supported and checked
+* Pause/Resume of checking session
+* History of checked URLs
+* Tabbed checking (allow multiple sessions at the same time)
+* Filter checked links (good, broken, malformed and undetermined)
+* Configurable number of simultaneous connections (performance tunning)
+* Other configurable options like "check external links", 
+"check parent folders", "timeout"
+* Good integration with Quanta+
 
 
 %files -n kde4-klinkstatus
