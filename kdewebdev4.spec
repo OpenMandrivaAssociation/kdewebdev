@@ -10,7 +10,7 @@ License: GPL
 Summary: A web editor for the KDE Desktop Environment
 Epoch: 1
 URL: http://kdewebdev.org/
-Release: %mkrel 2
+Release: %mkrel 3
 Source: ftp://ftp.kde.org/pub/kde/stable/%version/src/kdewebdev-%version.tar.bz2
 Group: Graphical desktop/KDE
 BuildRoot: %_tmppath/%name-%version-%release-root
@@ -220,7 +220,7 @@ kimagemapeditor program
 %_kde_docdir/*/*/kimagemapeditor
 
 #--------------------------------------------------------------------------
-
+%if 0
 %package -n kde4-kxsldbg
 Summary: Kxsldbg
 Group: Graphical desktop/KDE
@@ -244,7 +244,6 @@ kxsldbg program
 
 %files -n kde4-kxsldbg
 %defattr(-,root,root)
-%if 0
 %_kde_bindir/kxsldbg
 %_kde_bindir/xsldbg
 %_kde_datadir/applications/kde4/kxsldbg.desktop
@@ -263,10 +262,9 @@ kxsldbg program
 %_datadir/dbus-1/interfaces/org.kde.kxsldbg.kxsldbg.xml
 %_kde_libdir/kde4/libkxsldbgpart.so
 %_kde_docdir/HTML/en/kxsldbg
-%endif
 # Invalid for now
 %exclude %_kde_docdir/HTML/en/xsldbg
-
+%endif
 #--------------------------------------------------------------------------
 
 %prep
