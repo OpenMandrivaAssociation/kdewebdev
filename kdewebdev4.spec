@@ -10,7 +10,7 @@ License: GPL
 Summary: A web editor for the KDE Desktop Environment
 Epoch: 1
 URL: http://kdewebdev.org/
-Release: %mkrel 3
+Release: %mkrel 4
 Source: ftp://ftp.kde.org/pub/kde/stable/%version/src/kdewebdev-%version.tar.bz2
 Group: Graphical desktop/KDE
 BuildRoot: %_tmppath/%name-%version-%release-root
@@ -41,7 +41,7 @@ Requires: kde4-kommander
 A web editor for the KDE Desktop Environment
 
 #--------------------------------------------------------------------
-
+%if 0
 %package -n kde4-quanta
 Summary: Quanta
 Group: Graphical desktop/KDE
@@ -59,7 +59,6 @@ A HTML editor for the K Desktop Environment.
 
 %files -n kde4-quanta
 %defattr(-,root,root)
-%if 0
 %_kde_bindir/quanta
 %_kde_libdir/kde4/libkdev*
 %_kde_libdir/kde4/quanta*
