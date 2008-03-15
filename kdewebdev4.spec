@@ -219,6 +219,8 @@ kimagemapeditor program
 %_kde_libdir/kde4/libkimagemapeditor.so
 %_kde_docdir/*/*/kimagemapeditor
 
+%exclude %_kde_docdir/HTML/en/xsldbg
+
 #--------------------------------------------------------------------------
 %if 0
 %package -n kde4-kxsldbg
