@@ -10,7 +10,7 @@ License: GPL
 Summary: A web editor for the KDE Desktop Environment
 Epoch: 1
 URL: http://kdewebdev.org/
-Release: %mkrel 4
+Release: %mkrel 5
 Source: ftp://ftp.kde.org/pub/kde/stable/%version/src/kdewebdev-%version.tar.bz2
 Group: Graphical desktop/KDE
 BuildRoot: %_tmppath/%name-%version-%release-root
@@ -29,7 +29,10 @@ Requires: tidy
 Requires(post): desktop-file-utils
 Requires(postun): desktop-file-utils
 
+%if 0
 Requires: kde4-quanta
+Requires: kde4-kxsldbg
+%endif
 Requires: kde4-kimagemapeditor
 %if %with_klinkstatus
 Requires: kde4-klinkstatus
