@@ -5,7 +5,7 @@
 %define lib_name %mklibname %name %lib_major
 
 Name: kdewebdev4
-Version: 4.0.2
+Version: 4.0.70
 License: GPL
 Summary: A web editor for the KDE Desktop Environment
 Epoch: 1
@@ -20,8 +20,7 @@ BuildRequires: libxml2-devel
 BuildRequires: libxslt-devel
 BuildRequires: kdelibs4-devel
 BuildRequires: freetype2 
-# Add back for kde 4.1
-#BuildRequires: kdevplatform4-devel
+BuildRequires: kdevplatform4-devel
 %if %with_klinkstatus
 BuildRequires: tidy-devel
 Requires: tidy
@@ -29,61 +28,63 @@ Requires: tidy
 Requires(post): desktop-file-utils
 Requires(postun): desktop-file-utils
 
-%if 0
-Requires: kde4-quanta
-Requires: kde4-kxsldbg
-%endif
-Requires: kde4-kimagemapeditor
+Requires: quanta
+Requires: kxsldbg
+Requires: kimagemapeditor
 %if %with_klinkstatus
-Requires: kde4-klinkstatus
+Requires: klinkstatus
 %endif
-Requires: kde4-kfilereplace
-Requires: kde4-kommander
+Requires: kfilereplace
+Requires: kommander
 
 %description
 A web editor for the KDE Desktop Environment
 
 #--------------------------------------------------------------------
-%if 0
-%package -n kde4-quanta
+%package -n quanta
 Summary: Quanta
 Group: Graphical desktop/KDE
 Provides: quanta4
-Requires: kde4-kimagemapeditor
+Requires: kimagemapeditor
 %if %with_klinkstatus
-Requires: kde4-klinkstatus
+Requires: klinkstatus
 %endif
-Requires: kde4-kfilereplace
-Requires: kde4-kommander
+Requires: kfilereplace
+Requires: kommander
 Requires: tidy
 Obsoletes: %name-core
-%description -n kde4-quanta
+Obsoletes:      kde4-quanta < 4.0.68
+Provides:       kde4-quanta = %version
+
+%description -n quanta
 A HTML editor for the K Desktop Environment.
 
-%files -n kde4-quanta
+%files -n quanta
 %defattr(-,root,root)
-%_kde_bindir/quanta
-%_kde_libdir/kde4/libkdev*
-%_kde_libdir/kde4/quanta*
-%_kde_libdir/libkdevquanta.so.*
-%_kde_datadir/applications/kde4/quanta.desktop
-%_kde_datadir/config.kcfg/quanta.kcfg
-%_kde_datadir/kde4/services/kdev*
-%_kde_datadir/kde4/services/quanta*
-%_kde_datadir/kde4/servicetypes/kdev*
-%_kde_appsdir/kdev*/*
-%_kde_appsdir/quanta*/*
-%_kde_iconsdir/*/*/apps/quanta*
+#%_kde_bindir/quanta
+#%_kde_libdir/kde4/libkdev*
+#%_kde_libdir/kde4/quanta*
+#%_kde_libdir/libkdevquanta.so.*
+#%_kde_datadir/applications/kde4/quanta.desktop
+#%_kde_datadir/config.kcfg/quanta.kcfg
+#%_kde_datadir/kde4/services/kdev*
+#%_kde_datadir/kde4/services/quanta*
+#%_kde_datadir/kde4/servicetypes/kdev*
+#%_kde_appsdir/kdev*/*
+#%_kde_appsdir/quanta*/*
+#%_kde_iconsdir/*/*/apps/quanta*
 %_kde_docdir/HTML/en/quanta
-%endif
 
 %if %with_klinkstatus
-%package -n kde4-klinkstatus
+%package -n klinkstatus
 Summary: klinkstatus
 Group: Graphical desktop/KDE
 Provides: klinkstatus4
 Obsoletes: %name-core
-%description -n kde4-klinkstatus
+Obsoletes:      kde4-klinkstatus < 4.0.68
+Provides:       kde4-klinkstatus = %version
+
+%description -n klinkstatus
 * Support several protocols (allowing fast checking of 
 local documents): http, ftp, ssh (fish or sftp) and file.
 * Proxy support
@@ -105,12 +106,14 @@ local documents): http, ftp, ssh (fish or sftp) and file.
 * Other configurable options like "check external links", 
 "check parent folders", "timeout"
 * Good integration with Quanta+
+%endif
 
-
-%files -n kde4-klinkstatus
+%files -n klinkstatus
 %defattr(-,root,root)
 %{_kde_bindir}/klinkstatus
 %{_kde_libdir}/kde4/klinkstatuspart.so
+%{_kde_libdir}/kde4/automationklinkstatus.so
+%{_kde_libdir}/kde4/krossmoduleklinkstatus.so
 %{_kde_datadir}/applications/kde4/klinkstatus.desktop
 %dir %{_kde_appsdir}/klinkstatus
 %{_kde_appsdir}/klinkstatus/klinkstatus_shell.rc
@@ -121,32 +124,63 @@ local documents): http, ftp, ssh (fish or sftp) and file.
 %{_kde_appsdir}/klinkstatuspart/pics/304.png
 %{_kde_iconsdir}/*/*/apps/klinkstatus.png
 %{_kde_datadir}/kde4/services/klinkstatus_part.desktop
-%{_datadir}/dbus-1/interfaces/org.kdewebdev.klinkstatus.ISearchManager.xml
+#%{_datadir}/dbus-1/interfaces/org.kdewebdev.klinkstatus.ISearchManager.xml
+%{_datadir}/dbus-1/interfaces/org.kde.kdewebdev.klinkstatus.SearchManager.xml
+%{_datadir}/dbus-1/interfaces/org.kde.kdewebdev.klinkstatus.SearchManagerAgent.xml
+%{_kde_appsdir}/klinkstatus/scripts/scripts.rc
+%{_kde_appsdir}/klinkstatuspart/kpartplugins/klinkstatus_automation.rc
+%{_kde_appsdir}/klinkstatuspart/kpartplugins/scripting.rc
+%{_kde_datadir}/config/klinkstatus.knsrc
+%{_kde_datadir}/kde4/services/klinkstatus_automation.desktop
+%{_kde_datadir}/kde4/services/krossmoduleklinkstatus.desktop
 %_kde_docdir/HTML/en/klinkstatus
-%endif
+#Need to be added on a devel package
+%exclude %{_kde_libdir}/libklinkstatuscommon.so
 
 #--------------------------------------------------------------------------
 
-%package -n kde4-kfilereplace
+%define klinkstatuscommon_major 4
+%define libklinkstatuscommon %mklibname klinkstatuscommon %klinkstatuscommon_major
+
+%package -n %libklinkstatuscommon
+Summary: KDE 4 core library
+Group: System/Libraries
+
+%description -n %libklinkstatuscommon
+KDE 4 core library.
+
+%post -n %libklinkstatuscommon -p /sbin/ldconfig
+%postun -n %libklinkstatuscommon -p /sbin/ldconfig
+
+%files -n %libklinkstatuscommon
+%defattr(-,root,root)
+%_kde_libdir/libklinkstatuscommon.so.%{klinkstatuscommon_major}*
+
+
+#--------------------------------------------------------------------------
+
+%package -n kfilereplace
 Summary: kfilereplace
 Group: Graphical desktop/KDE
 Provides: kfilereplace4
 Obsoletes: %name-core
+Obsoletes:      kde4-kfilereplace < 4.0.68
+Provides:       kde4-kfilereplace = %version
 
-%description -n kde4-kfilereplace
+%description -n kfilereplace
 Kfilereplace program
 
-%post -n kde4-kfilereplace
+%post -n kfilereplace
 %{update_desktop_database}
 %update_icon_cache crystalsvg
 %update_icon_cache hicolor
 
-%postun -n kde4-kfilereplace
+%postun -n kfilereplace
 %{clean_desktop_database}
 %clean_icon_cache crystalsvg
 %clean_icon_cache hicolor
 
-%files -n kde4-kfilereplace
+%files -n kfilereplace
 %defattr(-,root,root)
 %_kde_bindir/kfilereplace
 %_kde_datadir/applications/kde4/kfilereplace.desktop
@@ -162,55 +196,59 @@ Kfilereplace program
 
 #--------------------------------------------------------------------------
 
-%package -n kde4-kommander
+%package -n kommander
 Summary: Kommander
 Group: Graphical desktop/KDE
 Provides: kommander4
 Requires(post): desktop-file-utils
 Requires(postun): desktop-file-utils
 Obsoletes: %name-core
+Obsoletes:      kde4-kommander < 4.0.68
+Provides:       kde4-kommander = %version
 
-%description -n kde4-kommander
+%description -n kommander
 Kommander program
 
-%post -n kde4-kommander
+%post -n kommander
 %{update_desktop_database}
 %update_icon_cache crystalsvg
 %update_icon_cache hicolor
 
-%postun -n kde4-kommander
+%postun -n kommander
 %{clean_desktop_database}
 %clean_icon_cache crystalsvg
 %clean_icon_cache hicolor
 
-%files -n kde4-kommander
+%files -n kommander
 %defattr(-,root,root)
 
 
 #--------------------------------------------------------------------------
 
-%package -n kde4-kimagemapeditor
+%package -n kimagemapeditor
 Summary: Kimagemapeditor
 Group: Graphical desktop/KDE
 Provides: kimagemapeditor4
 Requires(post): desktop-file-utils
 Requires(postun): desktop-file-utils
 Obsoletes: %name-core
+Obsoletes:      kde4-kimagemapeditor < 4.0.68
+Provides:       kde4-kimagemapeditor = %version
 
-%description -n kde4-kimagemapeditor
+%description -n kimagemapeditor
 kimagemapeditor program
 
-%post -n kde4-kimagemapeditor
+%post -n kimagemapeditor
 %{update_desktop_database}
 %update_icon_cache crystalsvg
 %update_icon_cache hicolor
 
-%postun -n kde4-kimagemapeditor
+%postun -n kimagemapeditor
 %{clean_desktop_database}
 %clean_icon_cache locolor 
 %clean_icon_cache hicolor
 
-%files -n kde4-kimagemapeditor
+%files -n kimagemapeditor
 %defattr(-,root,root)
 %_kde_bindir/kimagemapeditor
 %_kde_datadir/applications/kde4/kimagemapeditor.desktop
@@ -224,51 +262,52 @@ kimagemapeditor program
 %exclude %_kde_docdir/HTML/en/xsldbg
 
 #--------------------------------------------------------------------------
-%if 0
-%package -n kde4-kxsldbg
+%package -n kxsldbg
 Summary: Kxsldbg
 Group: Graphical desktop/KDE
 Provides: kxsldbg4
 Requires(post): desktop-file-utils
 Requires(postun): desktop-file-utils
 Obsoletes: %name-core
+Obsoletes:      kde4-kxsldbg < 4.0.68
+Provides:       kde4-kxsldbg = %version
 
-%description -n kde4-kxsldbg
+%description -n kxsldbg
 kxsldbg program
 
-%post -n kde4-kxsldbg
+%post -n kxsldbg
 %{update_desktop_database}
 %update_icon_cache crystalsvg
 %update_icon_cache hicolor
 
-%postun -n kde4-kxsldbg
+%postun -n kxsldbg
 %{clean_desktop_database}
 %clean_icon_cache crystalsvg
 %clean_icon_cache hicolor
 
-%files -n kde4-kxsldbg
+%files -n kxsldbg
 %defattr(-,root,root)
-%_kde_bindir/kxsldbg
-%_kde_bindir/xsldbg
-%_kde_datadir/applications/kde4/kxsldbg.desktop
-%dir %_kde_appsdir/kxsldbg
-%_kde_appsdir/kxsldbg/*.xml
-%_kde_appsdir/kxsldbg/*.xsl
-%_kde_appsdir/kxsldbg/*.dtd
-%_kde_appsdir/kxsldbg/kxsldbg_shell.rc
-%_kde_appsdir/kxsldbgpart/kxsldbg_part.rc
-%dir %_kde_appsdir/xsldbg
-%_kde_appsdir/xsldbg/*.xml
-%_kde_appsdir/xsldbg/*.xsl
-%_kde_appsdir/xsldbg/*.dtd
-%_kde_datadir/icons/hicolor/*/actions/xsldbg_*
-%_kde_datadir/kde4/services/kxsldbg_part.desktop
-%_datadir/dbus-1/interfaces/org.kde.kxsldbg.kxsldbg.xml
-%_kde_libdir/kde4/libkxsldbgpart.so
+#%_kde_bindir/kxsldbg
+#%_kde_bindir/xsldbg
+#%_kde_datadir/applications/kde4/kxsldbg.desktop
+#%dir %_kde_appsdir/kxsldbg
+#%_kde_appsdir/kxsldbg/*.xml
+#%_kde_appsdir/kxsldbg/*.xsl
+#%_kde_appsdir/kxsldbg/*.dtd
+#%_kde_appsdir/kxsldbg/kxsldbg_shell.rc
+#%_kde_appsdir/kxsldbgpart/kxsldbg_part.rc
+#%dir %_kde_appsdir/xsldbg
+#%_kde_appsdir/xsldbg/*.xml
+#%_kde_appsdir/xsldbg/*.xsl
+#%_kde_appsdir/xsldbg/*.dtd
+#%_kde_datadir/icons/hicolor/*/actions/xsldbg_*
+#%_kde_datadir/kde4/services/kxsldbg_part.desktop
+#%_datadir/dbus-1/interfaces/org.kde.kxsldbg.kxsldbg.xml
+#%_kde_libdir/kde4/libkxsldbgpart.so
 %_kde_docdir/HTML/en/kxsldbg
+%_kde_mandir/man1/xsldbg.1.lzma
 # Invalid for now
 %exclude %_kde_docdir/HTML/en/xsldbg
-%endif
 #--------------------------------------------------------------------------
 
 %prep
