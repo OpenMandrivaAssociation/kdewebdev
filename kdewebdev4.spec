@@ -5,7 +5,7 @@
 %define lib_name %mklibname %name %lib_major
 
 Name: kdewebdev4
-Version: 4.0.71
+Version: 4.0.73
 License: GPL
 Summary: A web editor for the KDE Desktop Environment
 Epoch: 1
@@ -115,21 +115,11 @@ local documents): http, ftp, ssh (fish or sftp) and file.
 %{_kde_libdir}/kde4/automationklinkstatus.so
 %{_kde_libdir}/kde4/krossmoduleklinkstatus.so
 %{_kde_datadir}/applications/kde4/klinkstatus.desktop
-%dir %{_kde_appsdir}/klinkstatus
-%{_kde_appsdir}/klinkstatus/klinkstatus_shell.rc
-%dir %{_kde_appsdir}/klinkstatus/styles
-%{_kde_appsdir}/klinkstatus/styles/results_stylesheet.xsl
-%dir %{_kde_appsdir}/klinkstatuspart
-%{_kde_appsdir}/klinkstatuspart/klinkstatus_part.rc
-%{_kde_appsdir}/klinkstatuspart/pics/304.png
+%{_kde_appsdir}/klinkstatus
+%{_kde_appsdir}/klinkstatuspart
 %{_kde_iconsdir}/*/*/apps/klinkstatus.png
 %{_kde_datadir}/kde4/services/klinkstatus_part.desktop
-#%{_datadir}/dbus-1/interfaces/org.kdewebdev.klinkstatus.ISearchManager.xml
 %{_datadir}/dbus-1/interfaces/org.kde.kdewebdev.klinkstatus.SearchManager.xml
-%{_datadir}/dbus-1/interfaces/org.kde.kdewebdev.klinkstatus.SearchManagerAgent.xml
-%{_kde_appsdir}/klinkstatus/scripts/scripts.rc
-%{_kde_appsdir}/klinkstatuspart/kpartplugins/klinkstatus_automation.rc
-%{_kde_appsdir}/klinkstatuspart/kpartplugins/scripting.rc
 %{_kde_datadir}/config/klinkstatus.knsrc
 %{_kde_datadir}/kde4/services/klinkstatus_automation.desktop
 %{_kde_datadir}/kde4/services/krossmoduleklinkstatus.desktop
@@ -184,9 +174,8 @@ Kfilereplace program
 %defattr(-,root,root)
 %_kde_bindir/kfilereplace
 %_kde_datadir/applications/kde4/kfilereplace.desktop
-%_kde_appsdir/kfilereplace/kfilereplaceui.rc
-%_kde_appsdir/kfilereplacepart/icons/crystalsvg/22x22/actions/*
-%_kde_appsdir/kfilereplacepart/kfilereplacepartui.rc
+%_kde_appsdir/kfilereplace
+%_kde_appsdir/kfilereplacepart
 %_kde_iconsdir/*/*/apps/kfilereplace.png
 %_kde_datadir/kde4/services/kfilereplacepart.desktop
 %_datadir/dbus-1/interfaces/org.kde.kfilereplace.xml
@@ -252,8 +241,7 @@ kimagemapeditor program
 %defattr(-,root,root)
 %_kde_bindir/kimagemapeditor
 %_kde_datadir/applications/kde4/kimagemapeditor.desktop
-%_kde_appsdir/kimagemapeditor/*.rc
-%_kde_appsdir/kimagemapeditor/*.png
+%_kde_appsdir/kimagemapeditor
 %_kde_datadir/icons/hicolor/*/apps/kimagemapeditor.png
 %_kde_datadir/kde4/services/kimagemapeditorpart.desktop
 %_kde_libdir/kde4/libkimagemapeditor.so
