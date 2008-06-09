@@ -142,8 +142,12 @@ Group: System/Libraries
 %description -n %libklinkstatuscommon
 KDE 4 core library.
 
+%if %mdkversion < 200900
 %post -n %libklinkstatuscommon -p /sbin/ldconfig
+%endif
+%if %mdkversion < 200900
 %postun -n %libklinkstatuscommon -p /sbin/ldconfig
+%endif
 
 %files -n %libklinkstatuscommon
 %defattr(-,root,root)
