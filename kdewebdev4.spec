@@ -22,7 +22,8 @@ BuildRequires: kdelibs4-devel
 BuildRequires: kdepimlibs4-devel
 BuildRequires: boost-devel
 BuildRequires: freetype2 
-BuildRequires: kdevplatform4-devel
+# Not yet
+# BuildRequires: kdevplatform4-devel
 %if %with_klinkstatus
 BuildRequires: tidy-devel
 Requires: tidy
@@ -43,6 +44,7 @@ Requires: kommander
 A web editor for the KDE Desktop Environment
 
 #--------------------------------------------------------------------
+
 %package -n quanta
 Summary: Quanta
 Group: Graphical desktop/KDE
@@ -75,7 +77,9 @@ A HTML editor for the K Desktop Environment.
 #%_kde_appsdir/kdev*/*
 #%_kde_appsdir/quanta*/*
 #%_kde_iconsdir/*/*/apps/quanta*
-%_kde_docdir/HTML/en/quanta
+#%_kde_docdir/HTML/en/quanta
+
+#--------------------------------------------------------------------
 
 %if %with_klinkstatus
 %package -n klinkstatus
@@ -121,13 +125,10 @@ local documents): http, ftp, ssh (fish or sftp) and file.
 %{_kde_appsdir}/klinkstatuspart
 %{_kde_iconsdir}/*/*/apps/klinkstatus.png
 %{_kde_datadir}/kde4/services/klinkstatus_part.desktop
-%{_datadir}/dbus-1/interfaces/org.kde.kdewebdev.klinkstatus.SearchManager.xml
 %{_kde_datadir}/config/klinkstatus.knsrc
 %{_kde_datadir}/kde4/services/klinkstatus_automation.desktop
 %{_kde_datadir}/kde4/services/krossmoduleklinkstatus.desktop
 %_kde_docdir/HTML/en/klinkstatus
-#Need to be added on a devel package
-%exclude %{_kde_libdir}/libklinkstatuscommon.so
 
 #--------------------------------------------------------------------------
 
@@ -184,10 +185,55 @@ Kfilereplace program
 %_kde_appsdir/kfilereplacepart
 %_kde_iconsdir/*/*/apps/kfilereplace.png
 %_kde_datadir/kde4/services/kfilereplacepart.desktop
-%_datadir/dbus-1/interfaces/org.kde.kfilereplace.xml
 %_kde_libdir/kde4/libkfilereplacepart.so
 %_kde_docdir/HTML/en/kfilereplace
 %_kde_iconsdir/*/*/actions/*
+
+#--------------------------------------------------------------------------
+
+%define kommanderwidgets_major 4
+%define libkommanderwidgets %mklibname kommanderwidgets %kommanderwidgets_major
+
+%package -n %libkommanderwidgets
+Summary: KDE 4 core library
+Group: System/Libraries
+
+%description -n %libkommanderwidgets
+KDE 4 core library.
+
+%if %mdkversion < 200900
+%post -n %libkommanderwidgets -p /sbin/ldconfig
+%endif
+%if %mdkversion < 200900
+%postun -n %libkommanderwidgets -p /sbin/ldconfig
+%endif
+
+%files -n %libkommanderwidgets
+%defattr(-,root,root)
+%_kde_libdir/libkommanderwidgets.so.%{kommanderwidgets_major}*
+
+#--------------------------------------------------------------------------
+
+%define kommandercore_major 4
+%define libkommandercore %mklibname kommandercore %kommandercore_major
+
+%package -n %libkommandercore
+Summary: KDE 4 core library
+Group: System/Libraries
+
+%description -n %libkommandercore
+KDE 4 core library.
+
+%if %mdkversion < 200900
+%post -n %libkommandercore -p /sbin/ldconfig
+%endif
+%if %mdkversion < 200900
+%postun -n %libkommandercore -p /sbin/ldconfig
+%endif
+
+%files -n %libkommandercore
+%defattr(-,root,root)
+%_kde_libdir/libkommandercore.so.%{kommandercore_major}*
 
 #--------------------------------------------------------------------------
 
@@ -216,7 +262,8 @@ Kommander program
 
 %files -n kommander
 %defattr(-,root,root)
-
+%_kde_bindir/kommander
+%_kde_datadir/applnk/.hidden/kommander.desktop
 
 #--------------------------------------------------------------------------
 
@@ -253,9 +300,8 @@ kimagemapeditor program
 %_kde_libdir/kde4/libkimagemapeditor.so
 %_kde_docdir/*/*/kimagemapeditor
 
-%exclude %_kde_docdir/HTML/en/xsldbg
-
 #--------------------------------------------------------------------------
+
 %package -n kxsldbg
 Summary: Kxsldbg
 Group: Graphical desktop/KDE
@@ -281,34 +327,48 @@ kxsldbg program
 
 %files -n kxsldbg
 %defattr(-,root,root)
-#%_kde_bindir/kxsldbg
-#%_kde_bindir/xsldbg
-#%_kde_datadir/applications/kde4/kxsldbg.desktop
-#%dir %_kde_appsdir/kxsldbg
-#%_kde_appsdir/kxsldbg/*.xml
-#%_kde_appsdir/kxsldbg/*.xsl
-#%_kde_appsdir/kxsldbg/*.dtd
-#%_kde_appsdir/kxsldbg/kxsldbg_shell.rc
-#%_kde_appsdir/kxsldbgpart/kxsldbg_part.rc
-#%dir %_kde_appsdir/xsldbg
-#%_kde_appsdir/xsldbg/*.xml
-#%_kde_appsdir/xsldbg/*.xsl
-#%_kde_appsdir/xsldbg/*.dtd
-#%_kde_datadir/icons/hicolor/*/actions/xsldbg_*
-#%_kde_datadir/kde4/services/kxsldbg_part.desktop
-#%_datadir/dbus-1/interfaces/org.kde.kxsldbg.kxsldbg.xml
-#%_kde_libdir/kde4/libkxsldbgpart.so
+%_kde_bindir/kxsldbg
+%_kde_bindir/xsldbg
+%_kde_datadir/applications/kde4/kxsldbg.desktop
+%dir %_kde_appsdir/kxsldbg
+%_kde_appsdir/kxsldbg/*
+%dir %_kde_appsdir/xsldbg
+%_kde_appsdir/xsldbg/*
+%dir %_kde_appsdir/kxsldbgpart
+%_kde_appsdir/kxsldbgpart/*
+%_kde_iconsdir/*/*/*/*xsldbg*
+%_kde_datadir/kde4/services/kxsldbg_part.desktop
+%_kde_libdir/kde4/libkxsldbgpart.so
 %_kde_docdir/HTML/en/kxsldbg
+%_kde_docdir/HTML/en/xsldbg
 %_kde_mandir/man1/xsldbg.1.lzma
-# Invalid for now
-%exclude %_kde_docdir/HTML/en/xsldbg
+
+#--------------------------------------------------------------------------
+
+%package devel
+Summary: Devel stuff for %name
+Group: Development/KDE and Qt
+Requires: kde4-macros
+Requires: kdelibs4-devel
+Requires: %{libkommandercore}
+Requires: %{libkommanderwidgets}
+
+%description  devel
+This package contains header files needed if you wish to build applications
+based on %name.
+
+%files devel
+%defattr(-,root,root)
+%_kde_datadir/dbus-1/interfaces/*
+%{_kde_includedir}/*
+%{_kde_libdir}/*.so
+
 #--------------------------------------------------------------------------
 
 %prep
 %setup -q -n kdewebdev-%version
 
 %build
-
 %cmake_kde4
 
 %make
@@ -317,8 +377,6 @@ kxsldbg program
 rm -fr %buildroot
 
 make -C build DESTDIR=%buildroot install
-
-rm -f %buildroot%_kde_libdir/libkdev*.so
 
 %clean
 rm -rf $RPM_BUILD_ROOT
