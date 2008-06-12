@@ -12,7 +12,6 @@ Epoch: 1
 URL: http://kdewebdev.org/
 Release: %mkrel 1
 Source: ftp://ftp.kde.org/pub/kde/stable/%version/src/kdewebdev-%version.tar.bz2
-Patch0: kdewebdev-4.0.74-find-tidy-path.patch
 Group: Graphical desktop/KDE
 BuildRoot: %_tmppath/%name-%version-%release-root
 BuildRequires: pam
@@ -307,7 +306,6 @@ kxsldbg program
 
 %prep
 %setup -q -n kdewebdev-%version
-%patch0 -p0 -b .tidy
 
 %build
 
