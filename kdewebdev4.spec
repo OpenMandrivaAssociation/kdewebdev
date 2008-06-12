@@ -22,6 +22,8 @@ BuildRequires: kdelibs4-devel
 BuildRequires: kdepimlibs4-devel
 BuildRequires: boost-devel
 BuildRequires: freetype2 
+BuildRequires: xft2-devel
+BuildRequires: xpm-devel
 # Not yet
 # BuildRequires: kdevplatform4-devel
 %if %with_klinkstatus
