@@ -5,7 +5,7 @@
 %define lib_name %mklibname %name %lib_major
 
 Name: kdewebdev4
-Version: 4.0.82
+Version: 4.0.83
 License: GPL
 Summary: A web editor for the KDE Desktop Environment
 Epoch: 1
