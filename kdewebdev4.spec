@@ -169,15 +169,19 @@ Provides:       kde4-kfilereplace = %version
 %description -n kfilereplace
 Kfilereplace program
 
+%if %mdkversion < 200900
 %post -n kfilereplace
 %{update_desktop_database}
 %update_icon_cache crystalsvg
 %update_icon_cache hicolor
+%endif
 
+%if %mdkversion < 200900
 %postun -n kfilereplace
 %{clean_desktop_database}
 %clean_icon_cache crystalsvg
 %clean_icon_cache hicolor
+%endif
 
 %files -n kfilereplace
 %defattr(-,root,root)
@@ -252,15 +256,19 @@ Provides:       kde4-kommander = %version
 %description -n kommander
 Kommander program
 
+%if %mdkversion < 200900
 %post -n kommander
 %{update_desktop_database}
 %update_icon_cache crystalsvg
 %update_icon_cache hicolor
+%endif
 
+%if %mdkversion < 200900
 %postun -n kommander
 %{clean_desktop_database}
 %clean_icon_cache crystalsvg
 %clean_icon_cache hicolor
+%endif
 
 %files -n kommander
 %defattr(-,root,root)
@@ -282,15 +290,19 @@ Provides:       kde4-kimagemapeditor = %version
 %description -n kimagemapeditor
 kimagemapeditor program
 
+%if %mdkversion < 200900
 %post -n kimagemapeditor
 %{update_desktop_database}
 %update_icon_cache crystalsvg
 %update_icon_cache hicolor
+%endif
 
+%if %mdkversion < 200900
 %postun -n kimagemapeditor
 %{clean_desktop_database}
 %clean_icon_cache locolor 
 %clean_icon_cache hicolor
+%endif
 
 %files -n kimagemapeditor
 %defattr(-,root,root)
@@ -317,15 +329,19 @@ Provides:       kde4-kxsldbg = %version
 %description -n kxsldbg
 kxsldbg program
 
+%if %mdkversion < 200900
 %post -n kxsldbg
 %{update_desktop_database}
 %update_icon_cache crystalsvg
 %update_icon_cache hicolor
+%endif
 
+%if %mdkversion < 200900
 %postun -n kxsldbg
 %{clean_desktop_database}
 %clean_icon_cache crystalsvg
 %clean_icon_cache hicolor
+%endif
 
 %files -n kxsldbg
 %defattr(-,root,root)
