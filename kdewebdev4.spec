@@ -6,12 +6,13 @@
 
 Name: kdewebdev4
 Version: 4.1.0
-License: GPL
+License: GPLv2+
 Summary: A web editor for the KDE Desktop Environment
 Epoch: 1
 URL: http://kdewebdev.org/
 Release: %mkrel 1
 Source: ftp://ftp.kde.org/pub/kde/stable/%version/src/kdewebdev-%version.tar.bz2
+Patch0: kdewebdev-4.1.0-fix-tidy-path.patch
 Group: Graphical desktop/KDE
 BuildRoot: %_tmppath/%name-%version-%release-root
 BuildRequires: pam
@@ -27,8 +28,9 @@ BuildRequires: xpm-devel
 # Not yet
 # BuildRequires: kdevplatform4-devel
 %if %with_klinkstatus
-BuildRequires: tidy-devel
-Requires: tidy
+# fwang: although with patch0, it could find our tidy, but it
+# throw out some error: kde bug#167603
+#BuildRequires: tidy-devel
 %endif
 Requires(post): desktop-file-utils
 Requires(postun): desktop-file-utils
@@ -91,6 +93,9 @@ Provides: klinkstatus4
 Obsoletes: %name-core
 Obsoletes:      kde4-klinkstatus < 4.0.68
 Provides:       kde4-klinkstatus = %version
+# fwang: move requires of tidy from main package to correct subpackage
+# but as it does not build now, it is of no use to enable it
+#Requires: tidy
 
 %description -n klinkstatus
 * Support several protocols (allowing fast checking of 
@@ -385,6 +390,7 @@ based on %name.
 
 %prep
 %setup -q -n kdewebdev-%version
+%patch0 -p0
 
 %build
 %cmake_kde4
