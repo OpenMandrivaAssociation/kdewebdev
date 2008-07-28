@@ -10,7 +10,7 @@ License: GPLv2+
 Summary: A web editor for the KDE Desktop Environment
 Epoch: 1
 URL: http://kdewebdev.org/
-Release: %mkrel 1
+Release: %mkrel 2
 Source: ftp://ftp.kde.org/pub/kde/stable/%version/src/kdewebdev-%version.tar.bz2
 Patch0: kdewebdev-4.1.0-fix-tidy-path.patch
 Group: Graphical desktop/KDE
