@@ -28,9 +28,7 @@ BuildRequires: xpm-devel
 # Not yet
 # BuildRequires: kdevplatform4-devel
 %if %with_klinkstatus
-# fwang: although with patch0, it could find our tidy, but it
-# throw out some error: kde bug#167603
-#BuildRequires: tidy-devel
+BuildRequires: tidy-devel
 %endif
 Requires(post): desktop-file-utils
 Requires(postun): desktop-file-utils
@@ -93,9 +91,7 @@ Provides: klinkstatus4
 Obsoletes: %name-core
 Obsoletes:      kde4-klinkstatus < 4.0.68
 Provides:       kde4-klinkstatus = %version
-# fwang: move requires of tidy from main package to correct subpackage
-# but as it does not build now, it is of no use to enable it
-#Requires: tidy
+Requires: tidy
 
 %description -n klinkstatus
 * Support several protocols (allowing fast checking of 
