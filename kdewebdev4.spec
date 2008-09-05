@@ -5,14 +5,13 @@
 %define lib_name %mklibname %name %lib_major
 
 Name: kdewebdev4
-Version: 4.1.0
+Version: 4.1.1
 License: GPLv2+
 Summary: A web editor for the KDE Desktop Environment
 Epoch: 1
 URL: http://kdewebdev.org/
-Release: %mkrel 2
+Release: %mkrel 1
 Source: ftp://ftp.kde.org/pub/kde/stable/%version/src/kdewebdev-%version.tar.bz2
-Patch0: kdewebdev-4.1.0-fix-tidy-path.patch
 Group: Graphical desktop/KDE
 BuildRoot: %_tmppath/%name-%version-%release-root
 BuildRequires: pam
@@ -386,7 +385,6 @@ based on %name.
 
 %prep
 %setup -q -n kdewebdev-%version
-%patch0 -p0
 
 %build
 %cmake_kde4
