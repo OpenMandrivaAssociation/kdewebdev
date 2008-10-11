@@ -32,7 +32,7 @@ BuildRequires: tidy-devel
 Requires(post): desktop-file-utils
 Requires(postun): desktop-file-utils
 
-Requires: quanta
+#Requires: quanta
 Requires: kxsldbg
 Requires: kimagemapeditor
 %if %with_klinkstatus
@@ -46,6 +46,7 @@ A web editor for the KDE Desktop Environment
 
 #--------------------------------------------------------------------
 
+%if 0
 %package -n quanta
 Summary: Quanta
 Group: Graphical desktop/KDE
@@ -66,19 +67,20 @@ A HTML editor for the K Desktop Environment.
 
 %files -n quanta
 %defattr(-,root,root)
-#%_kde_bindir/quanta
-#%_kde_libdir/kde4/libkdev*
-#%_kde_libdir/kde4/quanta*
-#%_kde_libdir/libkdevquanta.so.*
-#%_kde_datadir/applications/kde4/quanta.desktop
-#%_kde_datadir/config.kcfg/quanta.kcfg
-#%_kde_datadir/kde4/services/kdev*
-#%_kde_datadir/kde4/services/quanta*
-#%_kde_datadir/kde4/servicetypes/kdev*
-#%_kde_appsdir/kdev*/*
-#%_kde_appsdir/quanta*/*
-#%_kde_iconsdir/*/*/apps/quanta*
-#%_kde_docdir/HTML/en/quanta
+%_kde_bindir/quanta
+%_kde_libdir/kde4/libkdev*
+%_kde_libdir/kde4/quanta*
+%_kde_libdir/libkdevquanta.so.*
+%_kde_datadir/applications/kde4/quanta.desktop
+%_kde_datadir/config.kcfg/quanta.kcfg
+%_kde_datadir/kde4/services/kdev*
+%_kde_datadir/kde4/services/quanta*
+%_kde_datadir/kde4/servicetypes/kdev*
+%_kde_appsdir/kdev*/*
+%_kde_appsdir/quanta*/*
+%_kde_iconsdir/*/*/apps/quanta*
+%_kde_docdir/HTML/en/quanta
+%endif
 
 #--------------------------------------------------------------------
 
