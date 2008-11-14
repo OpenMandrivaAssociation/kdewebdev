@@ -5,7 +5,7 @@
 %define lib_name %mklibname %name %lib_major
 
 Name: kdewebdev4
-Version: 4.1.72
+Version: 4.1.73
 License: GPLv2+
 Summary: A web editor for the KDE Desktop Environment
 Epoch: 1
@@ -29,9 +29,6 @@ BuildRequires: xpm-devel
 %if %with_klinkstatus
 BuildRequires: tidy-devel
 %endif
-Requires(post): desktop-file-utils
-Requires(postun): desktop-file-utils
-
 #Requires: quanta
 Requires: kxsldbg
 Requires: kimagemapeditor
