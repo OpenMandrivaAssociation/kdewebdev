@@ -41,6 +41,9 @@ Requires: kommander
 %description
 A web editor for the KDE Desktop Environment
 
+%files
+%defattr(-,root,root)
+
 #--------------------------------------------------------------------
 
 %if 0
