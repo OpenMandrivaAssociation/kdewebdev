@@ -356,8 +356,8 @@ kxsldbg program
 %_kde_appsdir/xsldbg/*
 %dir %_kde_appsdir/kxsldbgpart
 %_kde_appsdir/kxsldbgpart/*
-%_kde_iconsdir/*/apps/kxsldbg.*
-%_kde_iconsdir/*/actions/xsldbg*
+%_kde_iconsdir/hicolor/*/apps/kxsldbg.*
+%_kde_iconsdir/hicolor/*/actions/xsldbg*
 %_kde_datadir/kde4/services/kxsldbg_part.desktop
 %_kde_libdir/kde4/libkxsldbgpart.so
 %_kde_docdir/HTML/en/kxsldbg
