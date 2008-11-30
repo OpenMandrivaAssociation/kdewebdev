@@ -5,7 +5,7 @@
 %define lib_name %mklibname %name %lib_major
 
 Name: kdewebdev4
-Version: 4.1.80
+Version: 4.1.81
 License: GPLv2+
 Summary: A web editor for the KDE Desktop Environment
 Epoch: 1
@@ -367,8 +367,8 @@ Summary: Devel stuff for %name
 Group: Development/KDE and Qt
 Requires: kde4-macros
 Requires: kdelibs4-devel
-Requires: %{libkommandercore}
-Requires: %{libkommanderwidgets}
+Requires: %{libkommandercore} = %{epoch}:%{version}
+Requires: %{libkommanderwidgets} = %{epoch}:%{version}
 
 %description  devel
 This package contains header files needed if you wish to build applications
