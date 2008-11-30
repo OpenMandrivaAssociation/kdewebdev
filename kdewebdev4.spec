@@ -10,7 +10,7 @@ License: GPLv2+
 Summary: A web editor for the KDE Desktop Environment
 Epoch: 1
 URL: http://kdewebdev.org/
-Release: %mkrel 1
+Release: %mkrel 2
 Source: ftp://ftp.kde.org/pub/kde/stable/%version/src/kdewebdev-%version.tar.bz2
 Group: Graphical desktop/KDE
 BuildRoot: %_tmppath/%name-%version-%release-root
@@ -193,6 +193,7 @@ Kfilereplace program
 %_kde_libdir/kde4/libkfilereplacepart.so
 %_kde_docdir/HTML/en/kfilereplace
 %_kde_iconsdir/*/*/actions/*
+%exclude %_kde_iconsdir/*/*/actions/xsldbg*
 
 #--------------------------------------------------------------------------
 
@@ -319,8 +320,7 @@ kimagemapeditor program
 Summary: Kxsldbg
 Group: Graphical desktop/KDE
 Provides: kxsldbg4
-Requires(post): desktop-file-utils
-Requires(postun): desktop-file-utils
+Conflicts: kfilereplace < 1:4.1.81-2
 Obsoletes: %name-core
 Obsoletes:      kde4-kxsldbg < 4.0.68
 Provides:       kde4-kxsldbg = %version
@@ -353,12 +353,13 @@ kxsldbg program
 %_kde_appsdir/xsldbg/*
 %dir %_kde_appsdir/kxsldbgpart
 %_kde_appsdir/kxsldbgpart/*
-%_kde_iconsdir/*/*/*/*xsldbg*
+%_kde_iconsdir/*/apps/kxsldbg.*
+%_kde_iconsdir/*/actions/xsldbg*
 %_kde_datadir/kde4/services/kxsldbg_part.desktop
 %_kde_libdir/kde4/libkxsldbgpart.so
 %_kde_docdir/HTML/en/kxsldbg
 %_kde_docdir/HTML/en/xsldbg
-%_kde_mandir/man1/xsldbg.1.lzma
+%_kde_mandir/man1/xsldbg.1*
 
 #--------------------------------------------------------------------------
 
