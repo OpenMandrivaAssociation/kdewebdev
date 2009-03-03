@@ -1,11 +1,7 @@
 %define with_klinkstatus 1
 
-%define lib_name_orig lib%name
-%define lib_major 0
-%define lib_name %mklibname %name %lib_major
-
 Name: kdewebdev4
-Version: 4.2.0
+Version: 4.2.1
 License: GPLv2+
 Summary: A web editor for the KDE Desktop Environment
 Epoch: 1
@@ -24,8 +20,6 @@ BuildRequires: boost-devel
 BuildRequires: freetype2 
 BuildRequires: xft2-devel
 BuildRequires: xpm-devel
-# Not yet
-# BuildRequires: kdevplatform4-devel
 %if %with_klinkstatus
 BuildRequires: tidy-devel
 %endif
