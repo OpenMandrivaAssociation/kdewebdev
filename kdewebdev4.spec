@@ -1,8 +1,8 @@
 %define with_klinkstatus 1
-%define kderevision svn954171
+%define kderevision svn961800
 
 Name: kdewebdev4
-Version: 4.2.70
+Version: 4.2.71
 License: GPLv2+
 Summary: A web editor for the KDE Desktop Environment
 Epoch: 1
