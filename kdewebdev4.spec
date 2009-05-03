@@ -1,13 +1,14 @@
 %define with_klinkstatus 1
+%define kderevision svn954171
 
 Name: kdewebdev4
-Version: 4.2.2
+Version: 4.2.70
 License: GPLv2+
 Summary: A web editor for the KDE Desktop Environment
 Epoch: 1
 URL: http://kdewebdev.org/
-Release: %mkrel 1
-Source: ftp://ftp.kde.org/pub/kde/stable/%version/src/kdewebdev-%version.tar.bz2
+Release: %mkrel 0.%kderevision.1
+Source: ftp://ftp.kde.org/pub/kde/stable/%version/src/kdewebdev-%version.%kderevision.tar.bz2
 Group: Graphical desktop/KDE
 BuildRoot: %_tmppath/%name-%version-%release-root
 BuildRequires: pam
@@ -140,13 +141,6 @@ Group: System/Libraries
 %description -n %libklinkstatuscommon
 KDE 4 core library.
 
-%if %mdkversion < 200900
-%post -n %libklinkstatuscommon -p /sbin/ldconfig
-%endif
-%if %mdkversion < 200900
-%postun -n %libklinkstatuscommon -p /sbin/ldconfig
-%endif
-
 %files -n %libklinkstatuscommon
 %defattr(-,root,root)
 %_kde_libdir/libklinkstatuscommon.so.%{klinkstatuscommon_major}*
@@ -164,20 +158,6 @@ Provides:       kde4-kfilereplace = %version
 
 %description -n kfilereplace
 Kfilereplace program
-
-%if %mdkversion < 200900
-%post -n kfilereplace
-%{update_desktop_database}
-%update_icon_cache crystalsvg
-%update_icon_cache hicolor
-%endif
-
-%if %mdkversion < 200900
-%postun -n kfilereplace
-%{clean_desktop_database}
-%clean_icon_cache crystalsvg
-%clean_icon_cache hicolor
-%endif
 
 %files -n kfilereplace
 %defattr(-,root,root)
@@ -204,13 +184,6 @@ Group: System/Libraries
 %description -n %libkommanderwidgets
 KDE 4 core library.
 
-%if %mdkversion < 200900
-%post -n %libkommanderwidgets -p /sbin/ldconfig
-%endif
-%if %mdkversion < 200900
-%postun -n %libkommanderwidgets -p /sbin/ldconfig
-%endif
-
 %files -n %libkommanderwidgets
 %defattr(-,root,root)
 %_kde_libdir/libkommanderwidgets.so.%{kommanderwidgets_major}*
@@ -226,13 +199,6 @@ Group: System/Libraries
 
 %description -n %libkommandercore
 KDE 4 core library.
-
-%if %mdkversion < 200900
-%post -n %libkommandercore -p /sbin/ldconfig
-%endif
-%if %mdkversion < 200900
-%postun -n %libkommandercore -p /sbin/ldconfig
-%endif
 
 %files -n %libkommandercore
 %defattr(-,root,root)
@@ -253,20 +219,6 @@ Provides:       kde4-kommander = %version
 %description -n kommander
 Kommander program
 
-%if %mdkversion < 200900
-%post -n kommander
-%{update_desktop_database}
-%update_icon_cache crystalsvg
-%update_icon_cache hicolor
-%endif
-
-%if %mdkversion < 200900
-%postun -n kommander
-%{clean_desktop_database}
-%clean_icon_cache crystalsvg
-%clean_icon_cache hicolor
-%endif
-
 %files -n kommander
 %defattr(-,root,root)
 %_kde_bindir/kommander
@@ -286,20 +238,6 @@ Provides:       kde4-kimagemapeditor = %version
 
 %description -n kimagemapeditor
 kimagemapeditor program
-
-%if %mdkversion < 200900
-%post -n kimagemapeditor
-%{update_desktop_database}
-%update_icon_cache crystalsvg
-%update_icon_cache hicolor
-%endif
-
-%if %mdkversion < 200900
-%postun -n kimagemapeditor
-%{clean_desktop_database}
-%clean_icon_cache locolor 
-%clean_icon_cache hicolor
-%endif
 
 %files -n kimagemapeditor
 %defattr(-,root,root)
@@ -324,20 +262,6 @@ Provides:       kde4-kxsldbg = %version
 
 %description -n kxsldbg
 kxsldbg program
-
-%if %mdkversion < 200900
-%post -n kxsldbg
-%{update_desktop_database}
-%update_icon_cache crystalsvg
-%update_icon_cache hicolor
-%endif
-
-%if %mdkversion < 200900
-%postun -n kxsldbg
-%{clean_desktop_database}
-%clean_icon_cache crystalsvg
-%clean_icon_cache hicolor
-%endif
 
 %files -n kxsldbg
 %defattr(-,root,root)
@@ -381,7 +305,7 @@ based on %name.
 #--------------------------------------------------------------------------
 
 %prep
-%setup -q -n kdewebdev-%version
+%setup -q -n kdewebdev-%version.%kderevision
 
 %build
 %cmake_kde4
