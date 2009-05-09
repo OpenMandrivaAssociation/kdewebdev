@@ -2,13 +2,13 @@
 %define kderevision svn961800
 
 Name: kdewebdev4
-Version: 4.2.71
+Version: 4.2.85
 License: GPLv2+
 Summary: A web editor for the KDE Desktop Environment
 Epoch: 1
 URL: http://kdewebdev.org/
-Release: %mkrel 0.%kderevision.1
-Source: ftp://ftp.kde.org/pub/kde/stable/%version/src/kdewebdev-%version.%kderevision.tar.bz2
+Release: %mkrel 1
+Source: ftp://ftp.kde.org/pub/kde/stable/%version/src/kdewebdev-%version.tar.bz2
 Group: Graphical desktop/KDE
 BuildRoot: %_tmppath/%name-%version-%release-root
 BuildRequires: pam
@@ -305,7 +305,7 @@ based on %name.
 #--------------------------------------------------------------------------
 
 %prep
-%setup -q -n kdewebdev-%version.%kderevision
+%setup -q -n kdewebdev-%version
 
 %build
 %cmake_kde4
