@@ -1,5 +1,11 @@
 %define with_klinkstatus 1
-%define kderevision svn969966
+
+%define branch 1
+%{?_branch: %{expand: %%global branch 1}}
+
+%if %branch
+%define kde_snapshot svn969966
+%endif
 
 Name: kdewebdev4
 Version: 4.2.87
@@ -8,7 +14,11 @@ Summary: A web editor for the KDE Desktop Environment
 Epoch: 1
 URL: http://kdewebdev.org/
 Release: %mkrel 1
+%if %branch
 Source: ftp://ftp.kde.org/pub/kde/stable/%version/src/kdewebdev-%version%kderevision.tar.bz2
+%else
+Source: ftp://ftp.kde.org/pub/kde/stable/%version/src/kdewebdev-%version.tar.bz2
+%endif
 Group: Graphical desktop/KDE
 BuildRoot: %_tmppath/%name-%version-%release-root
 BuildRequires: pam
@@ -305,7 +315,11 @@ based on %name.
 #--------------------------------------------------------------------------
 
 %prep
+%if %branch
 %setup -q -n kdewebdev-%version%kderevision
+%else
+%setup -q -n kdewebdev-%version
+%endif
 
 %build
 %cmake_kde4
