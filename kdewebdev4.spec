@@ -4,7 +4,7 @@
 %{?_branch: %{expand: %%global branch 1}}
 
 %if %branch
-%define kde_snapshot svn969966
+%define kderevision svn969966
 %endif
 
 Name: kdewebdev4
@@ -13,12 +13,13 @@ License: GPLv2+
 Summary: A web editor for the KDE Desktop Environment
 Epoch: 1
 URL: http://kdewebdev.org/
-Release: %mkrel 1
+Release: %mkrel 2
 %if %branch
 Source: ftp://ftp.kde.org/pub/kde/stable/%version/src/kdewebdev-%version%kderevision.tar.bz2
 %else
 Source: ftp://ftp.kde.org/pub/kde/stable/%version/src/kdewebdev-%version.tar.bz2
 %endif
+Patch0: kdewebdev-4.2.87-disable-quanta-doc.patch
 Group: Graphical desktop/KDE
 BuildRoot: %_tmppath/%name-%version-%release-root
 BuildRequires: pam
@@ -320,6 +321,7 @@ based on %name.
 %else
 %setup -q -n kdewebdev-%version
 %endif
+%patch0 -p0
 
 %build
 %cmake_kde4
