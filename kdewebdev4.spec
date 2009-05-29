@@ -4,16 +4,16 @@
 %{?_branch: %{expand: %%global branch 1}}
 
 %if %branch
-%define kderevision svn969966
+%define kderevision svn973768
 %endif
 
 Name: kdewebdev4
-Version: 4.2.87
+Version: 4.2.88
 License: GPLv2+
 Summary: A web editor for the KDE Desktop Environment
 Epoch: 1
 URL: http://kdewebdev.org/
-Release: %mkrel 2
+Release: %mkrel 1
 %if %branch
 Source: ftp://ftp.kde.org/pub/kde/stable/%version/src/kdewebdev-%version%kderevision.tar.bz2
 %else
