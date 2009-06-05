@@ -1,6 +1,6 @@
 %define with_klinkstatus 1
 
-%define branch 1
+%define branch 0
 %{?_branch: %{expand: %%global branch 1}}
 
 %if %branch
@@ -8,7 +8,7 @@
 %endif
 
 Name: kdewebdev4
-Version: 4.2.88
+Version: 4.2.90
 License: GPLv2+
 Summary: A web editor for the KDE Desktop Environment
 Epoch: 1
