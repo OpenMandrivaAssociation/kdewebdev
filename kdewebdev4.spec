@@ -1,7 +1,7 @@
 %define with_klinkstatus 1
 
 Name: kdewebdev4
-Version: 4.2.98
+Version: 4.3.0
 License: GPLv2+
 Summary: A web editor for the KDE Desktop Environment
 Epoch: 1
@@ -37,6 +37,8 @@ A web editor for the KDE Desktop Environment
 
 %files
 %defattr(-,root,root)
+%exclude %_kde_docdir/HTML/en/quanta
+%exclude %_mandir/man1/quanta*
 
 #--------------------------------------------------------------------
 
