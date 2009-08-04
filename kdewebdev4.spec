@@ -37,8 +37,7 @@ A web editor for the KDE Desktop Environment
 
 %files
 %defattr(-,root,root)
-%exclude %_kde_docdir/HTML/en/quanta
-%exclude %_mandir/man1/quanta*
+%doc README
 
 #--------------------------------------------------------------------
 
@@ -317,6 +316,10 @@ based on %name.
 rm -fr %buildroot
 
 %makeinstall_std -C build
+
+# until sorted out
+rm -f %buildroot/%_kde_docdir/HTML/en/quanta
+rm -f %buildroot/%_mandir/man1/quanta*
 
 %clean
 rm -rf $RPM_BUILD_ROOT
