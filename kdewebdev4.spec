@@ -12,6 +12,7 @@ Group: Graphical desktop/KDE
 BuildRoot: %_tmppath/%name-%version-%release-root
 BuildRequires: pam
 BuildRequires: diffutils
+BuildRequires: qt4-qtdbus
 BuildRequires: libxml2-devel
 BuildRequires: libxslt-devel
 BuildRequires: kdelibs4-devel
