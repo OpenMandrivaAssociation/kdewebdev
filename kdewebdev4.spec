@@ -6,7 +6,7 @@ License: GPLv2+
 Summary: A web editor for the KDE Desktop Environment
 Epoch: 1
 URL: http://kdewebdev.org/
-Release: %mkrel 1
+Release: %mkrel 2
 Source: ftp://ftp.kde.org/pub/kde/stable/%version/src/kdewebdev-%version.tar.bz2
 Group: Graphical desktop/KDE
 BuildRoot: %_tmppath/%name-%version-%release-root
@@ -32,6 +32,9 @@ Requires: klinkstatus
 %endif
 Requires: kfilereplace
 Requires: kommander
+%if %mdkversion >= 201000
+Obsoletes:      kdewebdev < 3.5.10-2
+%endif
 
 %description
 A web editor for the KDE Desktop Environment
