@@ -1,13 +1,14 @@
 %define with_klinkstatus 1
+%define kde_snapshot svn1040395
 
 Name: kdewebdev4
-Version: 4.3.2
+Version: 4.3.73
 License: GPLv2+
 Summary: A web editor for the KDE Desktop Environment
 Epoch: 1
 URL: http://kdewebdev.org/
 Release: %mkrel 1
-Source: ftp://ftp.kde.org/pub/kde/stable/%version/src/kdewebdev-%version.tar.bz2
+Source: ftp://ftp.kde.org/pub/kde/unstable/%version/src/kdewebdev-%version%kde_snapshot.tar.bz2
 Group: Graphical desktop/KDE
 BuildRoot: %_tmppath/%name-%version-%release-root
 BuildRequires: pam
@@ -273,6 +274,7 @@ kxsldbg program
 %_kde_bindir/kxsldbg
 %_kde_bindir/xsldbg
 %_kde_datadir/applications/kde4/kxsldbg.desktop
+%_kde_datadir/applications/kde4/xsldbg.desktop
 %dir %_kde_appsdir/kxsldbg
 %_kde_appsdir/kxsldbg/*
 %dir %_kde_appsdir/xsldbg
@@ -310,7 +312,7 @@ based on %name.
 #--------------------------------------------------------------------------
 
 %prep
-%setup -q -n kdewebdev-%version
+%setup -q -n kdewebdev-%version%kde_snapshot
 
 %build
 %cmake_kde4
