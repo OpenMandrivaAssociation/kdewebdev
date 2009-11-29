@@ -1,8 +1,7 @@
-%define with_klinkstatus 1
-%define kde_snapshot svn1048496
+%define kde_snapshot svn1053190
 
 Name: kdewebdev4
-Version: 4.3.75
+Version: 4.3.77
 License: GPLv2+
 Summary: A web editor for the KDE Desktop Environment
 Epoch: 1
@@ -23,15 +22,11 @@ BuildRequires: freetype2
 BuildRequires: xft2-devel
 BuildRequires: xpm-devel
 BuildRequires: ruby-devel
-%if %with_klinkstatus
 BuildRequires: tidy-devel
-%endif
 #Requires: quanta
 Requires: kxsldbg
 Requires: kimagemapeditor
-%if %with_klinkstatus
 Requires: klinkstatus
-%endif
 Requires: kfilereplace
 Requires: kommander
 %if %mdkversion >= 201000
@@ -53,9 +48,7 @@ Summary: Quanta
 Group: Graphical desktop/KDE
 Provides: quanta4
 Requires: kimagemapeditor
-%if %with_klinkstatus
 Requires: klinkstatus
-%endif
 Requires: kfilereplace
 Requires: kommander
 Requires: tidy
@@ -85,7 +78,6 @@ A HTML editor for the K Desktop Environment.
 
 #--------------------------------------------------------------------
 
-%if %with_klinkstatus
 %package -n klinkstatus
 Summary: klinkstatus
 Group: Graphical desktop/KDE
@@ -117,7 +109,6 @@ local documents): http, ftp, ssh (fish or sftp) and file.
 * Other configurable options like "check external links", 
 "check parent folders", "timeout"
 * Good integration with Quanta+
-%endif
 
 %files -n klinkstatus
 %defattr(-,root,root)
