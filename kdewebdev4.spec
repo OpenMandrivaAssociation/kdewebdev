@@ -1,13 +1,23 @@
+%define branch 0
+%{?_branch: %{expand: %%global branch 1}}
+
+
+%if %branch
 %define kde_snapshot svn1053190
+%endif
 
 Name: kdewebdev4
-Version: 4.3.77
+Version: 4.3.80
 License: GPLv2+
 Summary: A web editor for the KDE Desktop Environment
 Epoch: 1
 URL: http://kdewebdev.org/
 Release: %mkrel 1
+%if %branch
 Source: ftp://ftp.kde.org/pub/kde/unstable/%version/src/kdewebdev-%version%kde_snapshot.tar.bz2
+%else
+Source: ftp://ftp.kde.org/pub/kde/unstable/%version/src/kdewebdev-%version.tar.bz2
+%endif
 Group: Graphical desktop/KDE
 BuildRoot: %_tmppath/%name-%version-%release-root
 BuildRequires: pam
@@ -23,7 +33,6 @@ BuildRequires: xft2-devel
 BuildRequires: xpm-devel
 BuildRequires: ruby-devel
 BuildRequires: tidy-devel
-#Requires: quanta
 Requires: kxsldbg
 Requires: kimagemapeditor
 Requires: klinkstatus
@@ -39,42 +48,6 @@ A web editor for the KDE Desktop Environment
 %files
 %defattr(-,root,root)
 %doc README
-
-#--------------------------------------------------------------------
-
-%if 0
-%package -n quanta
-Summary: Quanta
-Group: Graphical desktop/KDE
-Provides: quanta4
-Requires: kimagemapeditor
-Requires: klinkstatus
-Requires: kfilereplace
-Requires: kommander
-Requires: tidy
-Obsoletes: %name-core
-Obsoletes:      kde4-quanta < 4.0.68
-Provides:       kde4-quanta = %version
-
-%description -n quanta
-A HTML editor for the K Desktop Environment.
-
-%files -n quanta
-%defattr(-,root,root)
-%_kde_bindir/quanta
-%_kde_libdir/kde4/libkdev*
-%_kde_libdir/kde4/quanta*
-%_kde_libdir/libkdevquanta.so.*
-%_kde_datadir/applications/kde4/quanta.desktop
-%_kde_datadir/config.kcfg/quanta.kcfg
-%_kde_datadir/kde4/services/kdev*
-%_kde_datadir/kde4/services/quanta*
-%_kde_datadir/kde4/servicetypes/kdev*
-%_kde_appsdir/kdev*/*
-%_kde_appsdir/quanta*/*
-%_kde_iconsdir/*/*/apps/quanta*
-%_kde_docdir/HTML/en/quanta
-%endif
 
 #--------------------------------------------------------------------
 
@@ -303,7 +276,11 @@ based on %name.
 #--------------------------------------------------------------------------
 
 %prep
+%if %branch
 %setup -q -n kdewebdev-%version%kde_snapshot
+%else
+%setup -q -n kdewebdev-%version
+%endif
 
 %build
 %cmake_kde4
@@ -314,10 +291,6 @@ based on %name.
 rm -fr %buildroot
 
 %makeinstall_std -C build
-
-# until sorted out
-rm -f %buildroot/%_kde_docdir/HTML/en/quanta
-rm -f %buildroot/%_mandir/man1/quanta*
 
 %clean
 rm -rf $RPM_BUILD_ROOT
