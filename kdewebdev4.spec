@@ -33,7 +33,6 @@ BuildRequires: xft2-devel
 BuildRequires: xpm-devel
 BuildRequires: ruby-devel
 BuildRequires: tidy-devel
-Requires: kxsldbg
 Requires: kimagemapeditor
 Requires: klinkstatus
 Requires: kfilereplace
@@ -140,7 +139,6 @@ Kfilereplace program
 %_kde_libdir/kde4/libkfilereplacepart.so
 %_kde_docdir/HTML/en/kfilereplace
 %_kde_iconsdir/*/*/actions/*
-%exclude %_kde_iconsdir/*/*/actions/xsldbg*
 
 #--------------------------------------------------------------------------
 
@@ -221,6 +219,7 @@ kimagemapeditor program
 
 #--------------------------------------------------------------------------
 
+%if 0
 %package -n kxsldbg
 Summary: Kxsldbg
 Group: Graphical desktop/KDE
@@ -252,6 +251,7 @@ kxsldbg program
 %_kde_docdir/HTML/en/kxsldbg
 %_kde_docdir/HTML/en/xsldbg
 %_kde_mandir/man1/xsldbg.1*
+%endif
 
 #--------------------------------------------------------------------------
 
