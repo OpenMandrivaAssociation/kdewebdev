@@ -7,7 +7,7 @@
 %endif
 
 Name: kdewebdev4
-Version: 4.3.85
+Version: 4.3.90
 License: GPLv2+
 Summary: A web editor for the KDE Desktop Environment
 Epoch: 1
