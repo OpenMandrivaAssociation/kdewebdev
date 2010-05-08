@@ -12,7 +12,7 @@ License: GPLv2+
 Summary: A web editor for the KDE Desktop Environment
 Epoch: 1
 URL: http://kdewebdev.org/
-Release: %mkrel 1
+Release: %mkrel 2
 %if %branch
 Source: ftp://ftp.kde.org/pub/kde/unstable/%version/src/kdewebdev-%version%kde_snapshot.tar.bz2
 %else
@@ -262,6 +262,7 @@ Requires: kde4-macros
 Requires: kdelibs4-devel
 Requires: %{libkommandercore} = %{epoch}:%{version}
 Requires: %{libkommanderwidgets} = %{epoch}:%{version}
+Requires: %{libklinkstatuscommon} = %{epoch}:%{version}
 
 %description  devel
 This package contains header files needed if you wish to build applications
