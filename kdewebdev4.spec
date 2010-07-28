@@ -3,16 +3,16 @@
 
 
 %if %branch
-%define kde_snapshot svn1053190
+%define kde_snapshot svn1138650
 %endif
 
 Name: kdewebdev4
-Version: 4.4.3
+Version: 4.4.95
 License: GPLv2+
 Summary: A web editor for the KDE Desktop Environment
 Epoch: 1
 URL: http://kdewebdev.org/
-Release: %mkrel 2
+Release: %mkrel 1
 %if %branch
 Source: ftp://ftp.kde.org/pub/kde/unstable/%version/src/kdewebdev-%version%kde_snapshot.tar.bz2
 %else
