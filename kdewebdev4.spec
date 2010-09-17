@@ -3,11 +3,11 @@
 
 
 %if %branch
-%define kde_snapshot svn1170578
+%define kde_snapshot svn1174542
 %endif
 
 Name: kdewebdev4
-Version: 4.5.67
+Version: 4.5.68
 License: GPLv2+
 Summary: A web editor for the KDE Desktop Environment
 Epoch: 1
@@ -20,17 +20,11 @@ Source: ftp://ftp.kde.org/pub/kde/unstable/%version/src/kdewebdev-%version.tar.b
 %endif
 Group: Graphical desktop/KDE
 BuildRoot: %_tmppath/%name-%version-%release-root
-BuildRequires: pam
-BuildRequires: diffutils
-BuildRequires: qt4-qtdbus
 BuildRequires: libxml2-devel
 BuildRequires: libxslt-devel
 BuildRequires: kdelibs4-devel
 BuildRequires: kdepimlibs4-devel
 BuildRequires: boost-devel
-BuildRequires: freetype2 
-BuildRequires: xft2-devel
-BuildRequires: xpm-devel
 BuildRequires: ruby-devel
 BuildRequires: tidy-devel
 Requires: kimagemapeditor
