@@ -1,13 +1,12 @@
-%define branch 1
+%define branch 0
 %{?_branch: %{expand: %%global branch 1}}
-
 
 %if %branch
 %define kde_snapshot svn1198704
 %endif
 
 Name: kdewebdev4
-Version: 4.5.77
+Version: 4.5.80
 License: GPLv2+
 Summary: A web editor for the KDE Desktop Environment
 Epoch: 1
