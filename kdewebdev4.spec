@@ -1,23 +1,11 @@
-%define branch 0
-%{?_branch: %{expand: %%global branch 1}}
-
-%if %branch
-%define kde_snapshot svn1198704
-%endif
-
 Name: kdewebdev4
-Version: 4.6.4
+Version: 4.7.40
 License: GPLv2+
 Summary: A web editor for the KDE Desktop Environment
 Epoch: 1
 URL: http://kdewebdev.org/
-%if %branch
-Release: 0.%kde_snapshot.1
-Source: ftp://ftp.kde.org/pub/kde/unstable/%version/src/kdewebdev-%version%kde_snapshot.tar.bz2
-%else
 Release: 1
 Source: ftp://ftp.kde.org/pub/kde/unstable/%version/src/kdewebdev-%version.tar.bz2
-%endif
 Group: Graphical desktop/KDE
 BuildRoot: %_tmppath/%name-%version-%release-root
 BuildRequires: libxml2-devel
@@ -31,9 +19,6 @@ Requires: kimagemapeditor
 Requires: klinkstatus
 Requires: kfilereplace
 Requires: kommander
-%if %mdkversion >= 201000
-Obsoletes:      kdewebdev < 3.5.10-2
-%endif
 
 %description
 A web editor for the KDE Desktop Environment
@@ -271,11 +256,7 @@ based on %name.
 #--------------------------------------------------------------------------
 
 %prep
-%if %branch
-%setup -q -n kdewebdev-%version%kde_snapshot
-%else
 %setup -q -n kdewebdev-%version
-%endif
 
 %build
 %cmake_kde4
@@ -283,10 +264,5 @@ based on %name.
 %make
 
 %install
-rm -fr %buildroot
-
 %makeinstall_std -C build
-
-%clean
-rm -rf $RPM_BUILD_ROOT
 
