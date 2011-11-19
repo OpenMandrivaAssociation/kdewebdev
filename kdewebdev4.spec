@@ -1,5 +1,5 @@
 Name: kdewebdev4
-Version: 4.7.41
+Version: 4.7.80
 License: GPLv2+
 Summary: A web editor for the KDE Desktop Environment
 Epoch: 1
