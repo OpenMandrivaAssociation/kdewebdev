@@ -15,6 +15,7 @@ BuildRequires: kdepimlibs4-devel
 BuildRequires: boost-devel
 BuildRequires: ruby-devel
 BuildRequires: tidy-devel
+BuildRequires: automoc4
 Requires: kimagemapeditor
 Requires: klinkstatus
 Requires: kfilereplace
