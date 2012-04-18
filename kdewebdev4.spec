@@ -1,11 +1,11 @@
 Name: kdewebdev4
-Version: 4.8.1
+Version: 4.8.2
 License: GPLv2+
 Summary: A web editor for the KDE Desktop Environment
 Epoch: 1
 URL: http://kdewebdev.org/
 Release: 1
-Source: ftp://ftp.kde.org/pub/kde/unstable/%version/src/kdewebdev-%version.tar.bz2
+Source: ftp://ftp.kde.org/pub/kde/unstable/%version/src/kdewebdev-%version.tar.xz
 Group: Graphical desktop/KDE
 BuildRoot: %_tmppath/%name-%version-%release-root
 BuildRequires: libxml2-devel
