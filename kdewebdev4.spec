@@ -5,7 +5,7 @@ Summary: A web editor for the KDE Desktop Environment
 Epoch: 1
 URL: http://kdewebdev.org/
 Release: 1
-Source: ftp://ftp.kde.org/pub/kde/unstable/%version/src/kdewebdev-%version.tar.xz
+Source: ftp://ftp.kde.org/pub/kde/stable/%version/src/kdewebdev-%version.tar.xz
 Group: Graphical desktop/KDE
 BuildRoot: %_tmppath/%name-%version-%release-root
 BuildRequires: libxml2-devel
