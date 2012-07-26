@@ -1,46 +1,40 @@
-Name: kdewebdev4
-Version: 4.8.97
-License: GPLv2+
-Summary: A web editor for the KDE Desktop Environment
-Epoch: 1
-URL: http://kdewebdev.org/
-Release: 1
-Source: ftp://ftp.kde.org/pub/kde/unstable/%version/src/kdewebdev-%version.tar.xz
-Group: Graphical desktop/KDE
-BuildRoot: %_tmppath/%name-%version-%release-root
-BuildRequires: libxml2-devel
-BuildRequires: libxslt-devel
-BuildRequires: kdelibs4-devel
-BuildRequires: kdepimlibs4-devel
-BuildRequires: boost-devel
-BuildRequires: ruby-devel
-BuildRequires: tidy-devel
-BuildRequires: automoc4
-Requires: kimagemapeditor
-Requires: klinkstatus
-Requires: kfilereplace
-Requires: kommander
+Name:		kdewebdev4
+Version:	4.8.97
+Release:	1
+Epoch:		1
+Summary:	A web editor for the KDE Desktop Environment
+Group:		Graphical desktop/KDE
+License:	GPLv2+
+URL:		http://kdewebdev.org/
+Source:		ftp://ftp.kde.org/pub/kde/unstable/%{version}/src/kdewebdev-%{version}.tar.xz
+BuildRequires:	pkgconfig(libxml-2.0)
+BuildRequires:	pkgconfig(libxslt)
+BuildRequires:	kdelibs4-devel
+BuildRequires:	kdepimlibs4-devel
+BuildRequires:	boost-devel
+BuildRequires:	ruby-devel
+BuildRequires:	tidy-devel
+BuildRequires:	automoc4
+Requires:	kimagemapeditor
+Requires:	klinkstatus
+Requires:	kfilereplace
+Requires:	kommander
 
 %description
 A web editor for the KDE Desktop Environment
 
 %files
-%defattr(-,root,root)
 %doc README
 
 #--------------------------------------------------------------------
 
 %package -n klinkstatus
-Summary: klinkstatus
-Group: Graphical desktop/KDE
-Provides: klinkstatus4
-Obsoletes: %name-core
-Obsoletes:      kde4-klinkstatus < 4.0.68
-Provides:       kde4-klinkstatus = %version
-Requires: tidy
+Summary:	klinkstatus
+Group:		Graphical desktop/KDE
+Requires:	tidy
 
 %description -n klinkstatus
-* Support several protocols (allowing fast checking of 
+* Support several protocols (allowing fast checking of
 local documents): http, ftp, ssh (fish or sftp) and file.
 * Proxy support
 * Allows authentication when checking restricted documents
@@ -63,207 +57,174 @@ local documents): http, ftp, ssh (fish or sftp) and file.
 * Good integration with Quanta+
 
 %files -n klinkstatus
-%defattr(-,root,root)
 %{_kde_bindir}/klinkstatus
 %{_kde_libdir}/kde4/klinkstatuspart.so
 %{_kde_libdir}/kde4/automationklinkstatus.so
 %{_kde_libdir}/kde4/krossmoduleklinkstatus.so
-%{_kde_datadir}/applications/kde4/klinkstatus.desktop
+%{_kde_applicationsdir}/klinkstatus.desktop
 %{_kde_appsdir}/klinkstatus
 %{_kde_appsdir}/klinkstatuspart
 %{_kde_iconsdir}/*/*/apps/klinkstatus.png
-%{_kde_datadir}/kde4/services/klinkstatus_part.desktop
-%{_kde_datadir}/config/klinkstatus.knsrc
-%{_kde_datadir}/kde4/services/klinkstatus_automation.desktop
-%{_kde_datadir}/kde4/services/krossmoduleklinkstatus.desktop
-%_kde_docdir/HTML/en/klinkstatus
+%{_kde_services}/klinkstatus_part.desktop
+%{_kde_services}/klinkstatus_automation.desktop
+%{_kde_services}/krossmoduleklinkstatus.desktop
+%{_kde_configdir}/klinkstatus.knsrc
+%{_kde_docdir}/HTML/en/klinkstatus
 
 #--------------------------------------------------------------------------
 
 %define klinkstatuscommon_major 4
-%define libklinkstatuscommon %mklibname klinkstatuscommon %klinkstatuscommon_major
+%define libklinkstatuscommon %mklibname klinkstatuscommon %{klinkstatuscommon_major}
 
-%package -n %libklinkstatuscommon
-Summary: KDE 4 core library
-Group: System/Libraries
+%package -n %{libklinkstatuscommon}
+Summary:	KDE 4 core library
+Group:		System/Libraries
 
-%description -n %libklinkstatuscommon
+%description -n %{libklinkstatuscommon}
 KDE 4 core library.
 
-%files -n %libklinkstatuscommon
-%defattr(-,root,root)
-%_kde_libdir/libklinkstatuscommon.so.%{klinkstatuscommon_major}*
+%files -n %{libklinkstatuscommon}
+%{_kde_libdir}/libklinkstatuscommon.so.%{klinkstatuscommon_major}*
 
 
 #--------------------------------------------------------------------------
 
 %package -n kfilereplace
-Summary: kfilereplace
-Group: Graphical desktop/KDE
-Provides: kfilereplace4
-Obsoletes: %name-core
-Obsoletes:      kde4-kfilereplace < 4.0.68
-Provides:       kde4-kfilereplace = %version
+Summary:	kfilereplace
+Group:		Graphical desktop/KDE
 
 %description -n kfilereplace
 Kfilereplace program
 
 %files -n kfilereplace
-%defattr(-,root,root)
-%_kde_bindir/kfilereplace
-%_kde_datadir/applications/kde4/kfilereplace.desktop
-%_kde_appsdir/kfilereplace
-%_kde_appsdir/kfilereplacepart
-%_kde_iconsdir/*/*/apps/kfilereplace.png
-%_kde_datadir/kde4/services/kfilereplacepart.desktop
-%_kde_libdir/kde4/libkfilereplacepart.so
-%_kde_docdir/HTML/en/kfilereplace
-%_kde_iconsdir/*/*/actions/*
+%{_kde_bindir}/kfilereplace
+%{_kde_applicationsdir}/kfilereplace.desktop
+%{_kde_appsdir}/kfilereplace
+%{_kde_appsdir}/kfilereplacepart
+%{_kde_iconsdir}/*/*/apps/kfilereplace.png
+%{_kde_iconsdir}/*/*/actions/*
+%{_kde_services}/kfilereplacepart.desktop
+%{_kde_libdir}/kde4/libkfilereplacepart.so
+%{_kde_docdir}/HTML/en/kfilereplace
 
 #--------------------------------------------------------------------------
 
 %define kommanderwidgets_major 4
-%define libkommanderwidgets %mklibname kommanderwidgets %kommanderwidgets_major
+%define libkommanderwidgets %mklibname kommanderwidgets %{kommanderwidgets_major}
 
-%package -n %libkommanderwidgets
-Summary: KDE 4 core library
-Group: System/Libraries
+%package -n %{libkommanderwidgets}
+Summary:	KDE 4 core library
+Group:		System/Libraries
 
-%description -n %libkommanderwidgets
+%description -n %{libkommanderwidgets}
 KDE 4 core library.
 
-%files -n %libkommanderwidgets
-%defattr(-,root,root)
-%_kde_libdir/libkommanderwidgets.so.%{kommanderwidgets_major}*
+%files -n %{libkommanderwidgets}
+%{_kde_libdir}/libkommanderwidgets.so.%{kommanderwidgets_major}*
 
 #--------------------------------------------------------------------------
 
 %define kommandercore_major 4
-%define libkommandercore %mklibname kommandercore %kommandercore_major
+%define libkommandercore %mklibname kommandercore %{kommandercore_major}
 
-%package -n %libkommandercore
-Summary: KDE 4 core library
-Group: System/Libraries
+%package -n %{libkommandercore}
+Summary:	KDE 4 core library
+Group:		System/Libraries
 
-%description -n %libkommandercore
+%description -n %{libkommandercore}
 KDE 4 core library.
 
-%files -n %libkommandercore
-%defattr(-,root,root)
-%_kde_libdir/libkommandercore.so.%{kommandercore_major}*
+%files -n %{libkommandercore}
+%{_kde_libdir}/libkommandercore.so.%{kommandercore_major}*
 
 #--------------------------------------------------------------------------
 
 %package -n kommander
-Summary: Kommander
-Group: Graphical desktop/KDE
-Provides: kommander4
-Requires(post): desktop-file-utils
-Requires(postun): desktop-file-utils
-Obsoletes: %name-core
-Obsoletes:      kde4-kommander < 4.0.68
-Provides:       kde4-kommander = %version
+Summary:	Kommander
+Group:		Graphical desktop/KDE
 
 %description -n kommander
 Kommander program
 
 %files -n kommander
-%defattr(-,root,root)
-%_kde_bindir/kommander
-%_kde_datadir/applnk/.hidden/kommander.desktop
+%{_kde_bindir}/kommander
+%{_kde_datadir}/applnk/.hidden/kommander.desktop
 
 #--------------------------------------------------------------------------
 
 %package -n kimagemapeditor
-Summary: Kimagemapeditor
-Group: Graphical desktop/KDE
-Provides: kimagemapeditor4
-Requires(post): desktop-file-utils
-Requires(postun): desktop-file-utils
-Obsoletes: %name-core
-Obsoletes:      kde4-kimagemapeditor < 4.0.68
-Provides:       kde4-kimagemapeditor = %version
+Summary:	Kimagemapeditor
+Group:		Graphical desktop/KDE
 
 %description -n kimagemapeditor
 kimagemapeditor program
 
 %files -n kimagemapeditor
-%defattr(-,root,root)
-%_kde_bindir/kimagemapeditor
-%_kde_datadir/applications/kde4/kimagemapeditor.desktop
-%_kde_appsdir/kimagemapeditor
-%_kde_datadir/icons/hicolor/*/apps/kimagemapeditor.png
-%_kde_datadir/kde4/services/kimagemapeditorpart.desktop
-%_kde_libdir/kde4/libkimagemapeditor.so
-%_kde_docdir/*/*/kimagemapeditor
+%{_kde_bindir}/kimagemapeditor
+%{_kde_applicationsdir}/kimagemapeditor.desktop
+%{_kde_appsdir}/kimagemapeditor
+%{_kde_iconsdir}/hicolor/*/apps/kimagemapeditor.png
+%{_kde_services}/kimagemapeditorpart.desktop
+%{_kde_libdir}/kde4/libkimagemapeditor.so
+%{_kde_docdir}/*/*/kimagemapeditor
 
 #--------------------------------------------------------------------------
 
 %if 0
 %package -n kxsldbg
-Summary: Kxsldbg
-Group: Graphical desktop/KDE
-Provides: kxsldbg4
-Conflicts: kfilereplace < 1:4.1.81-2
-Obsoletes: %name-core
-Obsoletes:      kde4-kxsldbg < 4.0.68
-Provides:       kde4-kxsldbg = %version
+Summary:	Kxsldbg
+Group:		Graphical desktop/KDE
 
 %description -n kxsldbg
 kxsldbg program
 
 %files -n kxsldbg
-%defattr(-,root,root)
-%_kde_bindir/kxsldbg
-%_kde_bindir/xsldbg
-%_kde_datadir/applications/kde4/kxsldbg.desktop
-%_kde_datadir/applications/kde4/xsldbg.desktop
-%dir %_kde_appsdir/kxsldbg
-%_kde_appsdir/kxsldbg/*
-%dir %_kde_appsdir/xsldbg
-%_kde_appsdir/xsldbg/*
-%dir %_kde_appsdir/kxsldbgpart
-%_kde_appsdir/kxsldbgpart/*
-%_kde_iconsdir/hicolor/*/apps/kxsldbg.*
-%_kde_iconsdir/hicolor/*/actions/xsldbg*
-%_kde_datadir/kde4/services/kxsldbg_part.desktop
-%_kde_libdir/kde4/libkxsldbgpart.so
-%_kde_docdir/HTML/en/kxsldbg
-%_kde_docdir/HTML/en/xsldbg
-%_kde_mandir/man1/xsldbg.1*
+%{_kde_bindir}/kxsldbg
+%{_kde_bindir}/xsldbg
+%{_kde_applicationsdir}/kxsldbg.desktop
+%{_kde_applicationsdir}/xsldbg.desktop
+%{_kde_appsdir}/kxsldbg
+%{_kde_appsdir}/xsldbg
+%{_kde_appsdir}/kxsldbgpart
+%{_kde_iconsdir}/hicolor/*/apps/kxsldbg.*
+%{_kde_iconsdir}/hicolor/*/actions/xsldbg*
+%{_kde_services}/kxsldbg_part.desktop
+%{_kde_libdir}/kde4/libkxsldbgpart.so
+%{_kde_docdir}/HTML/en/kxsldbg
+%{_kde_docdir}/HTML/en/xsldbg
+%{_kde_mandir}/man1/xsldbg.1*
 %endif
 
 #--------------------------------------------------------------------------
 
 %package devel
-Summary: Devel stuff for %name
-Group: Development/KDE and Qt
-Requires: kde4-macros
-Requires: kdelibs4-devel
-Requires: %{libkommandercore} = %{epoch}:%{version}
-Requires: %{libkommanderwidgets} = %{epoch}:%{version}
-Requires: %{libklinkstatuscommon} = %{epoch}:%{version}
+Summary:	Devel stuff for %{name}
+Group:		Development/KDE and Qt
+Requires:	kde4-macros
+Requires:	kdelibs4-devel
+Requires:	%{libkommandercore} = %{EVRD}
+Requires:	%{libkommanderwidgets} = %{EVRD}
+Requires:	%{libklinkstatuscommon} = %{EVRD}
 
-%description  devel
+%description devel
 This package contains header files needed if you wish to build applications
-based on %name.
+based on %{name}.
 
 %files devel
-%defattr(-,root,root)
-%_kde_datadir/dbus-1/interfaces/*
+%{_kde_datadir}/dbus-1/interfaces/*
 %{_kde_includedir}/*
 %{_kde_libdir}/*.so
 
 #--------------------------------------------------------------------------
 
 %prep
-%setup -q -n kdewebdev-%version
+%setup -q -n kdewebdev-%{version}
 
 %build
 %cmake_kde4
-
 %make
 
 %install
+%__rm -rf %{buildroot}
 %makeinstall_std -C build
 
