@@ -1,5 +1,5 @@
 Name:		kdewebdev4
-Version: 4.9.0
+Version: 4.9.2
 Release: 1
 Epoch:		1
 Summary:	A web editor for the KDE Desktop Environment
