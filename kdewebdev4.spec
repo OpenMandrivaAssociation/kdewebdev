@@ -1,20 +1,20 @@
+Summary:	A web editor for the KDE Desktop Environment
 Name:		kdewebdev4
-Version:	4.10.3
+Version:	4.10.4
 Release:	1
 Epoch:		1
-Summary:	A web editor for the KDE Desktop Environment
 Group:		Graphical desktop/KDE
 License:	GPLv2+
-URL:		http://kdewebdev.org/
+Url:		http://kdewebdev.org/
 Source:		ftp://ftp.kde.org/pub/kde/stable/%{version}/src/kdewebdev-%{version}.tar.xz
-BuildRequires:	pkgconfig(libxml-2.0)
-BuildRequires:	pkgconfig(libxslt)
+BuildRequires:	automoc4
 BuildRequires:	kdelibs4-devel
 BuildRequires:	kdepimlibs4-devel
 BuildRequires:	boost-devel
 BuildRequires:	ruby-devel
 BuildRequires:	tidy-devel
-BuildRequires:	automoc4
+BuildRequires:	pkgconfig(libxml-2.0)
+BuildRequires:	pkgconfig(libxslt)
 Requires:	kimagemapeditor
 Requires:	klinkstatus
 Requires:	kfilereplace
@@ -228,6 +228,9 @@ based on %{name}.
 %makeinstall_std -C build
 
 %changelog
+* Wed Jun 05 2013 Andrey Bondrov <andrey.bondrov@rosalab.ru> 1:4.10.4-1
+- New version 4.10.4
+
 * Tue May 07 2013 Andrey Bondrov <andrey.bondrov@rosalab.ru> 1:4.10.3-1
 - New version 4.10.3
 
