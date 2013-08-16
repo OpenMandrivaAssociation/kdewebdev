@@ -32,6 +32,7 @@ A web editor for the KDE Desktop Environment
 Summary:	klinkstatus
 Group:		Graphical desktop/KDE
 Requires:	tidy
+Conflicts:	kdewebdev4-devel < 1:4.11.0
 
 %description -n klinkstatus
 * Support several protocols (allowing fast checking of
@@ -70,6 +71,7 @@ local documents): http, ftp, ssh (fish or sftp) and file.
 %{_kde_services}/krossmoduleklinkstatus.desktop
 %{_kde_configdir}/klinkstatus.knsrc
 %{_kde_docdir}/HTML/en/klinkstatus
+%{_datadir}/dbus-1/interfaces/org.kde.kdewebdev.klinkstatus.SearchManager.xml
 
 #--------------------------------------------------------------------------
 
@@ -86,15 +88,15 @@ KDE 4 core library.
 %files -n %{libklinkstatuscommon}
 %{_kde_libdir}/libklinkstatuscommon.so.%{klinkstatuscommon_major}*
 
-
 #--------------------------------------------------------------------------
 
 %package -n kfilereplace
 Summary:	kfilereplace
 Group:		Graphical desktop/KDE
+Conflicts:	kdewebdev4-devel < 1:4.11.0
 
 %description -n kfilereplace
-Kfilereplace program
+Kfilereplace program.
 
 %files -n kfilereplace
 %{_kde_bindir}/kfilereplace
@@ -106,6 +108,7 @@ Kfilereplace program
 %{_kde_services}/kfilereplacepart.desktop
 %{_kde_libdir}/kde4/libkfilereplacepart.so
 %{_kde_docdir}/HTML/en/kfilereplace
+%{_datadir}/dbus-1/interfaces/org.kde.kfilereplace.xml
 
 #--------------------------------------------------------------------------
 
@@ -211,7 +214,6 @@ This package contains header files needed if you wish to build applications
 based on %{name}.
 
 %files devel
-%{_kde_datadir}/dbus-1/interfaces/*
 %{_kde_includedir}/*
 %{_kde_libdir}/*.so
 
@@ -230,6 +232,7 @@ based on %{name}.
 %changelog
 * Wed Aug 14 2013 Andrey Bondrov <andrey.bondrov@rosalab.ru> 1:4.11.0-1
 - New version 4.11.0
+- Move dbus files out of devel package
 
 * Wed Jul 03 2013 Andrey Bondrov <andrey.bondrov@rosalab.ru> 1:4.10.5-1
 - New version 4.10.5
