@@ -3,40 +3,81 @@ Name:		kdewebdev4
 Version:	4.14.1
 Release:	1
 Epoch:		1
-Group:		Graphical desktop/KDE
 License:	GPLv2+
+Group:		Graphical desktop/KDE
 Url:		http://kdewebdev.org/
 Source:		ftp://ftp.kde.org/pub/kde/stable/%{version}/src/kdewebdev-%{version}.tar.xz
 BuildRequires:	automoc4
+BuildRequires:	boost-devel
 BuildRequires:	kdelibs4-devel
 BuildRequires:	kdepimlibs4-devel
-BuildRequires:	boost-devel
 BuildRequires:	ruby-devel
 BuildRequires:	tidy-devel
 BuildRequires:	pkgconfig(libxml-2.0)
 BuildRequires:	pkgconfig(libxslt)
+Requires:	kfilereplace
 Requires:	kimagemapeditor
 Requires:	klinkstatus
-Requires:	kfilereplace
 Requires:	kommander
 
 %description
-A web editor for the KDE Desktop Environment
+A web editor for the KDE Desktop Environment.
 
 %files
 %doc README
 
+#--------------------------------------------------------------------------
+
+%package -n kfilereplace
+Summary:	Search and replace tool
+Group:		Graphical desktop/KDE
+Conflicts:	kdewebdev4-devel < 1:4.11.0
+
+%description -n kfilereplace
+Search and replace tool.
+
+%files -n kfilereplace
+%{_kde_bindir}/kfilereplace
+%{_kde_applicationsdir}/kfilereplace.desktop
+%{_kde_appsdir}/kfilereplace
+%{_kde_appsdir}/kfilereplacepart
+%{_kde_iconsdir}/*/*/apps/kfilereplace.png
+%{_kde_iconsdir}/*/*/actions/*
+%{_kde_services}/kfilereplacepart.desktop
+%{_kde_libdir}/kde4/libkfilereplacepart.so
+%{_kde_docdir}/HTML/en/kfilereplace
+%{_datadir}/dbus-1/interfaces/org.kde.kfilereplace.xml
+
+#--------------------------------------------------------------------------
+
+%package -n kimagemapeditor
+Summary:	HTML image map editor
+Group:		Graphical desktop/KDE
+
+%description -n kimagemapeditor
+HTML image map editor.
+
+%files -n kimagemapeditor
+%{_kde_bindir}/kimagemapeditor
+%{_kde_applicationsdir}/kimagemapeditor.desktop
+%{_kde_appsdir}/kimagemapeditor
+%{_kde_iconsdir}/hicolor/*/apps/kimagemapeditor.png
+%{_kde_services}/kimagemapeditorpart.desktop
+%{_kde_libdir}/kde4/libkimagemapeditor.so
+%{_kde_docdir}/*/*/kimagemapeditor
+
 #--------------------------------------------------------------------
 
 %package -n klinkstatus
-Summary:	klinkstatus
+Summary:	Link checker tool
 Group:		Graphical desktop/KDE
 Requires:	tidy
 Conflicts:	kdewebdev4-devel < 1:4.11.0
 
 %description -n klinkstatus
+Link checker tool. It features:
 * Support several protocols (allowing fast checking of
-local documents): http, ftp, ssh (fish or sftp) and file.
+  local documents): http, ftp, ssh (fish or sftp) and file.
 * Proxy support
 * Allows authentication when checking restricted documents
 * Supports the latest Web standards-- HTML 4.0, HTTP 1.1
@@ -47,14 +88,14 @@ local documents): http, ftp, ssh (fish or sftp) and file.
   flat view
 * Limit the search depth
 * Fragment identifiers ("#" anchor links that point to a specific
- section in a document) are supported and checked
+  section in a document) are supported and checked
 * Pause/Resume of checking session
 * History of checked URLs
 * Tabbed checking (allow multiple sessions at the same time)
 * Filter checked links (good, broken, malformed and undetermined)
 * Configurable number of simultaneous connections (performance tunning)
-* Other configurable options like "check external links", 
-"check parent folders", "timeout"
+* Other configurable options like "check external links",
+  "check parent folders", "timeout"
 * Good integration with Quanta+
 
 %files -n klinkstatus
@@ -75,40 +116,44 @@ local documents): http, ftp, ssh (fish or sftp) and file.
 
 #--------------------------------------------------------------------------
 
+%package -n kommander
+Summary:	Visual dialog building tool
+Group:		Graphical desktop/KDE
+
+%description -n kommander
+Kommander is a visual dialog building tool which may be expanded to create
+full mainwindow applications. The primary objective is to create as much
+functionality as possible without using any scripting language. This is
+provided by the following features:
+* Specials - these are prefaced with an "@" like @widgetText. The offer
+  special features like the value of a widget, functions, aliases, global
+  variables and such.
+* DCOP integration - this allows Kommander dialogs to control and be
+  controled in interactions with other KDE applicatins. It is a very powerful
+  feature!
+* Signals and Slots - this is a little less intuitive to a new user. It is
+  under review for how we process things in the first major release. These
+  offer a limited event model for when a button is pushed or a widget is
+  changed. Combined with "Population Text" it is rather powerful.
+
+%files -n kommander
+%{_kde_bindir}/kommander
+%{_kde_datadir}/applnk/.hidden/kommander.desktop
+
+#--------------------------------------------------------------------------
+
 %define klinkstatuscommon_major 4
 %define libklinkstatuscommon %mklibname klinkstatuscommon %{klinkstatuscommon_major}
 
 %package -n %{libklinkstatuscommon}
-Summary:	KDE 4 core library
+Summary:	KDE4 shared library
 Group:		System/Libraries
 
 %description -n %{libklinkstatuscommon}
-KDE 4 core library.
+KDE4 shared library.
 
 %files -n %{libklinkstatuscommon}
 %{_kde_libdir}/libklinkstatuscommon.so.%{klinkstatuscommon_major}*
-
-#--------------------------------------------------------------------------
-
-%package -n kfilereplace
-Summary:	kfilereplace
-Group:		Graphical desktop/KDE
-Conflicts:	kdewebdev4-devel < 1:4.11.0
-
-%description -n kfilereplace
-Kfilereplace program.
-
-%files -n kfilereplace
-%{_kde_bindir}/kfilereplace
-%{_kde_applicationsdir}/kfilereplace.desktop
-%{_kde_appsdir}/kfilereplace
-%{_kde_appsdir}/kfilereplacepart
-%{_kde_iconsdir}/*/*/apps/kfilereplace.png
-%{_kde_iconsdir}/*/*/actions/*
-%{_kde_services}/kfilereplacepart.desktop
-%{_kde_libdir}/kde4/libkfilereplacepart.so
-%{_kde_docdir}/HTML/en/kfilereplace
-%{_datadir}/dbus-1/interfaces/org.kde.kfilereplace.xml
 
 #--------------------------------------------------------------------------
 
@@ -116,11 +161,11 @@ Kfilereplace program.
 %define libkommanderwidgets %mklibname kommanderwidgets %{kommanderwidgets_major}
 
 %package -n %{libkommanderwidgets}
-Summary:	KDE 4 core library
+Summary:	KDE4 shared library
 Group:		System/Libraries
 
 %description -n %{libkommanderwidgets}
-KDE 4 core library.
+KDE4 shared library.
 
 %files -n %{libkommanderwidgets}
 %{_kde_libdir}/libkommanderwidgets.so.%{kommanderwidgets_major}*
@@ -131,83 +176,25 @@ KDE 4 core library.
 %define libkommandercore %mklibname kommandercore %{kommandercore_major}
 
 %package -n %{libkommandercore}
-Summary:	KDE 4 core library
+Summary:	KDE4 shared library
 Group:		System/Libraries
 
 %description -n %{libkommandercore}
-KDE 4 core library.
+KDE4 shared library.
 
 %files -n %{libkommandercore}
 %{_kde_libdir}/libkommandercore.so.%{kommandercore_major}*
 
 #--------------------------------------------------------------------------
 
-%package -n kommander
-Summary:	Kommander
-Group:		Graphical desktop/KDE
-
-%description -n kommander
-Kommander program
-
-%files -n kommander
-%{_kde_bindir}/kommander
-%{_kde_datadir}/applnk/.hidden/kommander.desktop
-
-#--------------------------------------------------------------------------
-
-%package -n kimagemapeditor
-Summary:	Kimagemapeditor
-Group:		Graphical desktop/KDE
-
-%description -n kimagemapeditor
-kimagemapeditor program
-
-%files -n kimagemapeditor
-%{_kde_bindir}/kimagemapeditor
-%{_kde_applicationsdir}/kimagemapeditor.desktop
-%{_kde_appsdir}/kimagemapeditor
-%{_kde_iconsdir}/hicolor/*/apps/kimagemapeditor.png
-%{_kde_services}/kimagemapeditorpart.desktop
-%{_kde_libdir}/kde4/libkimagemapeditor.so
-%{_kde_docdir}/*/*/kimagemapeditor
-
-#--------------------------------------------------------------------------
-
-%if 0
-%package -n kxsldbg
-Summary:	Kxsldbg
-Group:		Graphical desktop/KDE
-
-%description -n kxsldbg
-kxsldbg program
-
-%files -n kxsldbg
-%{_kde_bindir}/kxsldbg
-%{_kde_bindir}/xsldbg
-%{_kde_applicationsdir}/kxsldbg.desktop
-%{_kde_applicationsdir}/xsldbg.desktop
-%{_kde_appsdir}/kxsldbg
-%{_kde_appsdir}/xsldbg
-%{_kde_appsdir}/kxsldbgpart
-%{_kde_iconsdir}/hicolor/*/apps/kxsldbg.*
-%{_kde_iconsdir}/hicolor/*/actions/xsldbg*
-%{_kde_services}/kxsldbg_part.desktop
-%{_kde_libdir}/kde4/libkxsldbgpart.so
-%{_kde_docdir}/HTML/en/kxsldbg
-%{_kde_docdir}/HTML/en/xsldbg
-%{_kde_mandir}/man1/xsldbg.1*
-%endif
-
-#--------------------------------------------------------------------------
-
 %package devel
-Summary:	Devel stuff for %{name}
+Summary:	Development files for %{name}
 Group:		Development/KDE and Qt
 Requires:	kde4-macros
 Requires:	kdelibs4-devel
+Requires:	%{libklinkstatuscommon} = %{EVRD}
 Requires:	%{libkommandercore} = %{EVRD}
 Requires:	%{libkommanderwidgets} = %{EVRD}
-Requires:	%{libklinkstatuscommon} = %{EVRD}
 
 %description devel
 This package contains header files needed if you wish to build applications
@@ -232,6 +219,7 @@ based on %{name}.
 %changelog
 * Mon Sep 29 2014 Andrey Bondrov <andrey.bondrov@rosalab.ru> 1:4.14.1-1
 - New version 4.14.1
+- Fix descriptions
 
 * Tue Jul 15 2014 Andrey Bondrov <andrey.bondrov@rosalab.ru> 1:4.13.3-1
 - New version 4.13.3
