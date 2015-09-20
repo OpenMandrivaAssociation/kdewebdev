@@ -1,6 +1,6 @@
 Summary:	A web editor for the KDE Desktop Environment
 Name:		kdewebdev
-Version:	15.04.3
+Version:	15.08.1
 Release:	3
 Epoch:		1
 License:	GPLv2+
@@ -208,6 +208,8 @@ based on %{name}.
 
 %prep
 %setup -q -n kdewebdev-%{version}
+# required for cmake now
+sed -i '1s/^/cmake_minimum_required(VERSION 2.4)\n/' CMakeLists.txt
 
 %build
 %cmake_kde4

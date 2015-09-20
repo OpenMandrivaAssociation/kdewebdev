@@ -1,2 +1,4 @@
-sources:
+removed_sources:
   kdewebdev-15.04.3.tar.xz: 891f5402f0b67aade69593de09446b13b1587ca0
+sources:
+  kdewebdev-15.08.1.tar.xz: 2c2a7fc7b7be0d779a1951382a0d16ab3b0b749f
