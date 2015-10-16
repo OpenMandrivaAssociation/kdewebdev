@@ -1,7 +1,7 @@
 Summary:	A web editor for the KDE Desktop Environment
 Name:		kdewebdev
-Version:	15.08.1
-Release:	3
+Version:	15.08.2
+Release:	1
 Epoch:		1
 License:	GPLv2+
 Group:		Graphical desktop/KDE
