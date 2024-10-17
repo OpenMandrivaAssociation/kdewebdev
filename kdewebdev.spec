@@ -5,7 +5,7 @@ Release:	2
 Epoch:		1
 License:	GPLv2+
 Group:		Graphical desktop/KDE
-Url:		http://kdewebdev.org/
+Url:		https://kdewebdev.org/
 Source:		http://download.kde.org/stable/applications/%{version}/src/%{name}-%{version}.tar.xz
 BuildRequires:	automoc4
 BuildRequires:	boost-devel
