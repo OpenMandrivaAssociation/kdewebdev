@@ -7,6 +7,7 @@ License:	GPLv2+
 Group:		Graphical desktop/KDE
 Url:		https://kdewebdev.org/
 Source:		http://download.kde.org/stable/applications/%{version}/src/%{name}-%{version}.tar.xz
+BuildRequires:	make
 BuildRequires:	automoc4
 BuildRequires:	boost-devel
 BuildRequires:	kdelibs4-devel
